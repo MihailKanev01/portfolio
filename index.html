@@ -20,7 +20,9 @@
       href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&display=swap"
     />
     <style>
+      /* Theme variables */
       :root {
+        /* Default dark theme */
         --color-primary: #13121a;
         --color-primary-lighter: #18161f;
         --color-secondary: #1e1c29;
@@ -33,6 +35,55 @@
         --text-secondary: rgba(255, 255, 255, 0.6);
         --text-muted: rgba(255, 255, 255, 0.4);
         --border-subtle: rgba(84, 100, 196, 0.15);
+        
+        /* Default background image - dark version */
+        --hero-bg-filter: rgba(19, 18, 26, 0.9);
+      }
+
+      /* Light theme */
+      html[data-theme="light"] {
+        --color-primary: #f8f9fa;
+        --color-primary-lighter: #ffffff;
+        --color-secondary: #e9ecef;
+        --color-secondary-lighter: #dee2e6;
+        --color-secondary-darker: #ced4da;
+        --color-accent: #4353a3;
+        --color-accent-lighter: #5464c4;
+        --color-accent-darker: #3a4890;
+        --text-primary: rgba(33, 37, 41, 0.95);
+        --text-secondary: rgba(33, 37, 41, 0.7);
+        --text-muted: rgba(33, 37, 41, 0.5);
+        --border-subtle: rgba(84, 100, 196, 0.15);
+        
+        /* Light background image filter */
+        --hero-bg-filter: rgba(248, 249, 250, 0.9);
+      }
+
+      /* Add smooth transitions for theme changes */
+      * {
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      /* Theme toggle button styles */
+      .theme-toggle {
+        background: transparent;
+        border: none;
+        color: var(--text-primary);
+        font-size: 1.2rem;
+        padding: 8px 15px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+      }
+
+      .theme-toggle:hover {
+        background-color: rgba(84, 100, 196, 0.1);
+        color: var(--color-accent);
       }
 
       html {
@@ -70,6 +121,11 @@
         z-index: 1000;
       }
 
+      /* Update glass-nav for light theme */
+      html[data-theme="light"] .glass-nav {
+        background-color: rgba(248, 249, 250, 0.8);
+      }
+
       .navbar-brand {
         font-size: 1.4rem;
         color: var(--color-accent);
@@ -104,11 +160,11 @@
       }
 
       .hero-section {
-        background: linear-gradient(rgba(19, 18, 26, 0.9), rgba(19, 18, 26, 0.9)),
+        background: linear-gradient(var(--hero-bg-filter), var(--hero-bg-filter)),
           url("https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1600&q=80")
             no-repeat center center;
         background-size: cover;
-        color: white;
+        color: var(--text-primary);
         margin-top: 0;
         padding-top: 140px;
         padding-bottom: 80px;
@@ -307,7 +363,7 @@
       }
 
       .tag {
-        background-color: rgba(255, 255, 255, 0.1);
+        background-color: rgba(84, 100, 196, 0.1);
         color: var(--text-muted);
         padding: 4px 10px;
         border-radius: 5px;
@@ -496,6 +552,12 @@
                   <i class="fas fa-envelope me-1"></i> Contact
                 </a>
               </li>
+              <!-- Theme Toggle Button -->
+              <li class="nav-item d-flex align-items-center ms-2">
+                <button id="theme-toggle" class="theme-toggle" title="Toggle Theme">
+                  <i class="fas fa-moon"></i>
+                </button>
+              </li>
             </ul>
           </div>
         </div>
@@ -516,36 +578,35 @@
         </div>
       </section>
 
-      <!-- About Me Section -->
-      <section id="about" class="py-5">
-        <div class="container">
-          <h2 class="section-heading gradient-text">About Me</h2>
-          <div class="row align-items-center">
-            <div class="col-md-6 mb-4 mb-md-0">
-              <img
-                src="https://images.unsplash.com/photo-1614422557002-51c5bfbd3ac8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80"
-                alt="Unity Game Development"
-                class="img-fluid rounded shadow subtle-border"
-              />
-            </div>
-            <div class="col-md-6">
-              <p>I'm a passionate Unity and C# developer with a focus on creating clean, efficient code and engaging user experiences. My strength lies in game development, where I combine technical skills with creative problem-solving.</p>
-              <p>Currently I'm expanding my skills in backend development with Java and database technologies. When I'm not coding, you can find me exploring new game mechanics, contributing to open-source projects, or learning about emerging technologies.</p>
-              <div class="d-flex justify-content-center mt-4">
-                
-                  href="https://github.com/mihailkanev01"
-                  class="btn btn-outline-light me-2"
-                  target="_blank"
-                  ><i class="fab fa-github"></i> GitHub</a
-                >
-                <a href="#" class="btn btn-outline-primary me-2"
-                  ><i class="fab fa-linkedin"></i> LinkedIn</a
-                >
-              </div>
-            </div>
+<!-- About Me Section -->
+<section id="about" class="py-5">
+    <div class="container">
+      <h2 class="section-heading gradient-text">About Me</h2>
+      <div class="row align-items-center">
+        <div class="col-md-6 mb-4 mb-md-0">
+          <img
+            src="https://www.citypng.com/public/uploads/preview/unity-game-engine-logo-icon-png-701751694709269rfgrsxrghr.png"
+            alt="Unity Game Development"
+            class="img-fluid rounded shadow subtle-border"
+          />
+        </div>
+        <div class="col-md-6">
+          <p>I'm a passionate Unity and C# developer with a focus on creating clean, efficient code and engaging user experiences. My strength lies in game development, where I combine technical skills with creative problem-solving.</p>
+          <p>Currently I'm expanding my skills in backend development with Java and database technologies. When I'm not coding, you can find me exploring new game mechanics, contributing to open-source projects, or learning about emerging technologies.</p>
+          <div class="d-flex justify-content-center mt-4">
+            <a
+            href="https://github.com/mihailkanev01"
+            class="social-icon me-3">
+            <i class="fab fa-github"></i> GitHub</a>
+            <a href="#" class="btn btn-outline-primary me-2"
+              ><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="#" class="btn btn-outline-light"
+              ><i class="fab fa-unity"></i> Unity</a>
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+  </section>
 
       <!-- Skills Section -->
       <section id="skills" class="py-5 bg-light">
@@ -739,6 +800,49 @@
     ></script>
 
     <script>
+      // Theme toggler script
+      document.addEventListener('DOMContentLoaded', function() {
+        // Get the theme toggle button
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        // Check for saved theme preference or default to dark
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        
+        // Apply the saved theme
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        
+        // Update toggle button icon based on current theme
+        updateThemeIcon(savedTheme);
+        
+        // Add click event to theme toggle button
+        themeToggle.addEventListener('click', function() {
+          // Get current theme
+          const currentTheme = document.documentElement.getAttribute('data-theme');
+          
+          // Toggle theme
+          const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+          
+          // Save theme preference
+          localStorage.setItem('theme', newTheme);
+          
+          // Apply the new theme
+          document.documentElement.setAttribute('data-theme', newTheme);
+          
+          // Update toggle button icon
+          updateThemeIcon(newTheme);
+        });
+        
+        // Function to update the theme icon
+        function updateThemeIcon(theme) {
+          if (theme === 'dark') {
+            themeIcon.className = 'fas fa-sun';
+          } else {
+            themeIcon.className = 'fas fa-moon';
+          }
+        }
+      });
+      
       // Update current year
       document.getElementById('current-year').textContent = new Date().getFullYear();
       
