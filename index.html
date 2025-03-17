@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mihail Kanev - Unity & C# Developer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <h1>Mihail Kanev</h1>
+            <h2>Unity & C# Developer</h2>
+            <p>Creating immersive gaming experiences and robust backend solutions.</p>
+            <div class="buttons">
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+                <a href="#contact" class="btn btn-secondary">Contact Me</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <p>I'm a passionate Unity and C# developer with a focus on creating clean, efficient code and engaging user experiences. My strength lies in game development, where I combine technical skills with creative problem-solving.</p>
+            <p>Currently I'm expanding my skills in backend development with Java and database technologies. When I'm not coding, you can find me exploring new game mechanics, contributing to open-source projects, or learning about emerging technologies.</p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section bg-dark">
+        <div class="container">
+            <h2 class="section-title">My Skills</h2>
+            <div class="skills-container">
+                <div class="skill-card">
+                    <div class="skill-icon game-dev-icon">🎮</div>
+                    <h3>Game Development</h3>
+                    <p>Proficient in Unity and C# for creating immersive game experiences, including character controllers, AI behaviors, and game mechanics.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon backend-icon">💻</div>
+                    <h3>Back-End Development</h3>
+                    <p>Experience with Java, C#, and C++. Currently expanding knowledge in Spring framework for web application development.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon database-icon">🗄️</div>
+                    <h3>Database Design</h3>
+                    <p>Basics in SQL databases including PostgreSQL and MySQL. Knowledge of database modeling and query optimization.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">My Projects</h2>
+            <div class="project-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="game">Game Dev</button>
+                <button class="filter-btn" data-filter="web">Web Dev</button>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">Project Image</div>
+                    <div class="project-info">
+                        <h3>Horror Game 'Bio'</h3>
+                        <p>A psychological horror game developed with Unity and C#, featuring immersive environments.</p>
+                        <div class="project-tags">
+                            <span class="tag">Unity</span>
+                            <span class="tag">C#</span>
+                        </div>
+                        <a href="#" class="project-link">View project →</a>
+                    </div>
+                </div>
+                <!-- More project cards can be added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section bg-dark">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-container">
+                <div class="contact-form">
+                    <h3>Send me a message</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" placeholder="Your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="your.email@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" rows="5" placeholder="What would you like to discuss?"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p>Feel free to reach out to me through the form or directly via email or social media. I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
+                    <div class="info-item">
+                        <h4>Email</h4>
+                        <p>mihail.kanev@example.com</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Based in</h4>
+                        <p>Sofia, Bulgaria</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Connect with me</h4>
+                        <div class="social-links">
+                            <a href="https://github.com/mihailkanev01" target="_blank" class="social-link">GitHub</a>
+                            <a href="https://www.linkedin.com/in/mihail-kanev/" target="_blank" class="social-link">LinkedIn</a>
+                            <a href="https://www.instagram.com/_mihail_01/" target="_blank" class="social-link">Instagram</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© <span id="current-year">2025</span> Mihail Kanev. All rights reserved.</p>
+            <p class="credits">Built with HTML and CSS</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple script to update the year in the footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Simple project filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                // In a real implementation, you would filter projects here
+            });
+        });
+    </script>
+</body>
+</html>
