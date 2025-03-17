@@ -674,96 +674,204 @@ html[data-theme="light"] {
       <!-- Contact Section -->
       <section id="contact" class="py-5 bg-light">
         <div class="container">
-          <h2 class="section-heading gradient-text">Get In Touch</h2>
-          <div class="row justify-content-center">
-            <div class="col-md-6">
-              <div class="card">
-                <div class="card-body p-4">
-                    <form id="contact-form">
-                        <div class="mb-3">
-                          <label for="name" class="form-label">Name</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="name"
-                            name="name"
-                            required
-                            minlength="2"
-                            maxlength="50"
-                          />
-                          <div class="invalid-feedback">
-                            Please enter a valid name (2-50 characters, no numbers).
-                          </div>
+            <h2 class="section-heading gradient-text">Get In Touch</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body p-4">
+                            <form id="contact-form" novalidate>
+                                <div class="mb-4 position-relative">
+                                    <label for="name" class="form-label">Name</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-transparent border-0 position-absolute start-0 top-50 translate-middle-y ps-3 text-muted">
+                                            <i class="fas fa-user"></i>
+                                        </span>
+                                        <input
+                                            type="text"
+                                            class="form-control ps-5"
+                                            id="name"
+                                            name="name"
+                                            placeholder="Enter your full name"
+                                            required
+                                            minlength="2"
+                                            maxlength="50"
+                                            pattern="^[A-Za-z\s]+$"
+                                        />
+                                        <div class="invalid-feedback">
+                                            Please enter a valid name (2-50 characters, letters only).
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4 position-relative">
+                                    <label for="email" class="form-label">Email</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-transparent border-0 position-absolute start-0 top-50 translate-middle-y ps-3 text-muted">
+                                            <i class="fas fa-envelope"></i>
+                                        </span>
+                                        <input
+                                            type="email"
+                                            class="form-control ps-5"
+                                            id="email"
+                                            name="email"
+                                            placeholder="your.email@example.com"
+                                            required
+                                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                        />
+                                        <div class="invalid-feedback">
+                                            Please enter a valid email address.
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4 position-relative">
+                                    <label for="message" class="form-label">Message</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-transparent border-0 position-absolute start-0 top-2 ps-3 text-muted">
+                                            <i class="fas fa-comment"></i>
+                                        </span>
+                                        <textarea
+                                            class="form-control ps-5"
+                                            id="message"
+                                            name="message"
+                                            rows="4"
+                                            placeholder="Write your message here..."
+                                            required
+                                            minlength="10"
+                                            maxlength="500"
+                                        ></textarea>
+                                        <div class="invalid-feedback">
+                                            Please enter a message (10-500 characters).
+                                        </div>
+                                    </div>
+                                    <small class="form-text text-muted position-absolute end-0 mt-1" id="message-count">
+                                        0 / 500
+                                    </small>
+                                </div>
+                                
+                                <button 
+                                    type="submit" 
+                                    class="btn btn-primary w-100 d-flex align-items-center justify-content-center"
+                                    id="submit-btn"
+                                >
+                                    <i class="fas fa-paper-plane me-2"></i> 
+                                    <span>Send Message</span>
+                                </button>
+                            </form>
                         </div>
-                        <div class="mb-3">
-                          <label for="email" class="form-label">Email</label>
-                          <input
-                            type="email"
-                            class="form-control"
-                            id="email"
-                            name="email"
-                            required
-                            pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
-                          />
-                          <div class="invalid-feedback">
-                            Please enter a valid email address.
-                          </div>
-                        </div>
-                        <div class="mb-3">
-                          <label for="message" class="form-label">Message</label>
-                          <textarea
-                            class="form-control"
-                            id="message"
-                            name="message"
-                            rows="4"
-                            required
-                            minlength="10"
-                            maxlength="500"
-                          ></textarea>
-                          <div class="invalid-feedback">
-                            Please enter a message (10-500 characters).
-                          </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">
-                          <i class="fas fa-paper-plane me-2"></i> Send Message
-                        </button>
-                    </form>
+                    </div>
                 </div>
-              </div>
             </div>
-            <div class="col-md-4">
-              <div class="card h-100">
-                <div class="card-body p-4">
-                  <h3 class="h5 mb-4 gradient-text">Contact Information</h3>
-                  <div class="contact-info mb-3">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Varna, Bulgaria</span>
-                  </div>
-                  <div class="contact-info mb-3">
-                    <i class="fas fa-envelope"></i>
-                    <span>mihail.kanev.1995@abv.bg</span>
-                  </div>
-                  <h3 class="h5 mb-3 mt-4 gradient-text">You can find me in:</h3>
-                  <div class="d-flex">
-                    <a
-                      href="https://github.com/mihailkanev01"
-                      class="social-icon me-3"
-                    >
-                      <i class="fab fa-github"></i>
-                    </a>
-                    <a href="#" class="social-icon me-3">
-                      <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="#" class="social-icon">
-                      <i class="fab fa-instagram"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-      </section>
+    </section>
+    <style>
+        /* Enhanced form input styles */
+        .form-control {
+            transition: all 0.3s ease;
+            padding-left: 2.5rem !important;
+        }
+    
+        .form-control:focus {
+            box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.25);
+            border-color: var(--color-accent);
+        }
+    
+        .input-group-text {
+            color: var(--text-muted);
+            z-index: 5;
+        }
+    
+        /* Submit button hover and focus states */
+        #submit-btn:hover,
+        #submit-btn:focus {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+        }
+    
+        /* Character count styling */
+        #message-count {
+            font-size: 0.75rem;
+            right: 0;
+            top: 100%;
+        }
+    </style>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('contact-form');
+        const messageTextarea = document.getElementById('message');
+        const messageCount = document.getElementById('message-count');
+        const submitBtn = document.getElementById('submit-btn');
+    
+        // Character count for message
+        messageTextarea.addEventListener('input', function() {
+            const currentLength = this.value.length;
+            messageCount.textContent = `${currentLength} / 500`;
+            
+            // Change color based on length
+            if (currentLength > 450) {
+                messageCount.classList.add('text-danger');
+            } else {
+                messageCount.classList.remove('text-danger');
+            }
+        });
+    
+        // Form validation
+        form.addEventListener('submit', function(event) {
+            // Prevent default form submission
+            event.preventDefault();
+            
+            // Remove previous validation states
+            form.classList.remove('was-validated');
+            
+            // Check form validity
+            if (form.checkValidity()) {
+                // Disable submit button and show loading state
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = `
+                    <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                    Sending...
+                `;
+    
+                // Simulate form submission (replace with actual form submission logic)
+                setTimeout(() => {
+                    // Reset form and button
+                    form.reset();
+                    messageCount.textContent = '0 / 500';
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = `
+                        <i class="fas fa-paper-plane me-2"></i> 
+                        <span>Send Message</span>
+                    `;
+                    
+                    // Show success message (you could use a modal or toast)
+                    alert('Message sent successfully!');
+                }, 2000);
+            } else {
+                // Mark form as validated to show error states
+                form.classList.add('was-validated');
+            }
+        });
+    
+        // Real-time validation
+        const inputs = form.querySelectorAll('input, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('input', function() {
+                // Custom validation for name (letters only)
+                if (input.id === 'name') {
+                    input.value = input.value.replace(/[^A-Za-z\s]/g, '');
+                }
+                
+                // Remove validation state if input becomes valid
+                if (input.validity.valid) {
+                    input.classList.remove('is-invalid');
+                } else {
+                    input.classList.add('is-invalid');
+                }
+            });
+        });
+    });
+    </script>
     </main>
 
     <!-- Footer -->
