@@ -679,38 +679,55 @@ html[data-theme="light"] {
             <div class="col-md-6">
               <div class="card">
                 <div class="card-body p-4">
-                  <form>
-                    <div class="mb-3">
-                      <label for="name" class="form-label">Name</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="name"
-                        required
-                      />
-                    </div>
-                    <div class="mb-3">
-                      <label for="email" class="form-label">Email</label>
-                      <input
-                        type="email"
-                        class="form-control"
-                        id="email"
-                        required
-                      />
-                    </div>
-                    <div class="mb-3">
-                      <label for="message" class="form-label">Message</label>
-                      <textarea
-                        class="form-control"
-                        id="message"
-                        rows="4"
-                        required
-                      ></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100">
-                      <i class="fas fa-paper-plane me-2"></i> Send Message
-                    </button>
-                  </form>
+                    <form id="contact-form">
+                        <div class="mb-3">
+                          <label for="name" class="form-label">Name</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="name"
+                            name="name"
+                            required
+                            minlength="2"
+                            maxlength="50"
+                          />
+                          <div class="invalid-feedback">
+                            Please enter a valid name (2-50 characters, no numbers).
+                          </div>
+                        </div>
+                        <div class="mb-3">
+                          <label for="email" class="form-label">Email</label>
+                          <input
+                            type="email"
+                            class="form-control"
+                            id="email"
+                            name="email"
+                            required
+                            pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
+                          />
+                          <div class="invalid-feedback">
+                            Please enter a valid email address.
+                          </div>
+                        </div>
+                        <div class="mb-3">
+                          <label for="message" class="form-label">Message</label>
+                          <textarea
+                            class="form-control"
+                            id="message"
+                            name="message"
+                            rows="4"
+                            required
+                            minlength="10"
+                            maxlength="500"
+                          ></textarea>
+                          <div class="invalid-feedback">
+                            Please enter a message (10-500 characters).
+                          </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">
+                          <i class="fas fa-paper-plane me-2"></i> Send Message
+                        </button>
+                    </form>
                 </div>
               </div>
             </div>
