@@ -111,7 +111,7 @@ html[data-theme="light"] {
       }
 
       .glass-nav {
-        background-color: rgba(30, 28, 41, 0.8);
+        background-color: rgba(var(--color-primary-lighter) / 0.8);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
         border-bottom: 1px solid var(--border-subtle);
@@ -121,9 +121,13 @@ html[data-theme="light"] {
         z-index: 1000;
       }
 
-      /* Update glass-nav for light theme */
+      /* Update glass-nav for different themes */
+      html[data-theme="dark"] .glass-nav {
+        background-color: rgba(var(--color-primary-lighter) / 0.8);
+      }
+
       html[data-theme="light"] .glass-nav {
-        background-color: rgba(248, 249, 250, 0.8);
+        background-color: rgba(var(--color-primary-lighter) / 0.8);
       }
 
       .navbar-brand {
@@ -592,7 +596,7 @@ html[data-theme="light"] {
         </div>
         <div class="col-md-6">
           <p>I'm a passionate Unity and C# developer with a focus on creating clean, efficient code and engaging user experiences. My strength lies in game development, where I combine technical skills with creative problem-solving.</p>
-          <p>Currently I'm expanding my skills in backend development with Java and database technologies. When I'm not coding, you can find me exploring new game mechanics, contributing to open-source projects, or learning about emerging technologies.</p>
+          <p>When I'm not coding, I'm focusing on career growth and self-improvement. I spend time at the gym, pushing my limits, and working on developing the right mindset for success.</p>
         </div>
       </div>
     </div>
