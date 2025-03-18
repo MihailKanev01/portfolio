@@ -19,498 +19,20 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&display=swap"
     />
-    <style>
-      /* Theme variables */
-      /* Default dark theme (professional) */
-:root {
-  --color-primary: #0F172A;
-  --color-primary-lighter: #1E293B;
-  --color-secondary: #334155;
-  --color-secondary-lighter: #475569;
-  --color-secondary-darker: #1E293B;
-  --color-accent: #3B82F6;
-  --color-accent-lighter: #60A5FA;
-  --color-accent-darker: #2563EB;
-  --text-primary: rgba(255, 255, 255, 0.9);
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --text-muted: rgba(255, 255, 255, 0.5);
-  --border-subtle: rgba(59, 130, 246, 0.15);
-  
-  /* Default background image - dark version */
-  --hero-bg-filter: rgba(15, 23, 42, 0.9);
-}
-
-/* Light theme (professional) */
-html[data-theme="light"] {
-  --color-primary: #F8FAFC;
-  --color-primary-lighter: #FFFFFF;
-  --color-secondary: #F1F5F9;
-  --color-secondary-lighter: #E2E8F0;
-  --color-secondary-darker: #CBD5E1;
-  --color-accent: #2563EB;
-  --color-accent-lighter: #3B82F6;
-  --color-accent-darker: #1D4ED8;
-  --text-primary: #1E293B;
-  --text-secondary: #475569;
-  --text-muted: #64748B;
-  --border-subtle: rgba(37, 99, 235, 0.15);
-  
-  /* Light background image filter */
-  --hero-bg-filter: rgba(248, 250, 252, 0.9);
-}
-
-      /* Add smooth transitions for theme changes */
-      * {
-        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-      }
-
-      /* Theme toggle button styles */
-      .theme-toggle {
-        background: transparent;
-        border: none;
-        color: var(--text-primary);
-        font-size: 1.2rem;
-        padding: 8px 15px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px;
-        height: 40px;
-      }
-
-      .theme-toggle:hover {
-        background-color: rgba(84, 100, 196, 0.1);
-        color: var(--color-accent);
-      }
-
-      html {
-        scroll-behavior: smooth;
-        scroll-padding-top: 70px;
-      }
-
-      body {
-        padding-top: 0;
-        font-family: "JetBrains Mono", monospace;
-        overflow-x: hidden;
-        background-color: var(--color-primary);
-        color: var(--text-primary);
-        line-height: 1.6;
-      }
-
-      .gradient-text {
-        color: var(--color-accent);
-        font-weight: 600;
-      }
-
-      .subtle-border {
-        border: 1px solid var(--border-subtle);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-      }
-
-      .glass-nav {
-        background-color: rgba(var(--color-primary-lighter) / 0.8);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border-bottom: 1px solid var(--border-subtle);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        padding: 15px 0;
-        transition: all 0.3s ease;
-        z-index: 1000;
-      }
-
-      /* Update glass-nav for different themes */
-      html[data-theme="dark"] .glass-nav {
-        background-color: rgba(var(--color-primary-lighter) / 0.8);
-      }
-
-      html[data-theme="light"] .glass-nav {
-        background-color: rgba(var(--color-primary-lighter) / 0.8);
-      }
-
-      .navbar-brand {
-        font-size: 1.4rem;
-        color: var(--color-accent);
-        letter-spacing: -0.5px;
-        transition: all 0.3s ease;
-        font-weight: 700;
-      }
-
-      .navbar-brand:hover {
-        color: var(--color-accent-lighter);
-      }
-
-      .custom-toggler {
-        border: none;
-        background: transparent;
-        color: var(--color-accent);
-        font-size: 1.2rem;
-      }
-
-      .navbar .nav-link {
-        color: var(--text-primary);
-        font-weight: 500;
-        padding: 8px 15px;
-        margin: 0 3px;
-        border-radius: 4px;
-        transition: all 0.3s ease;
-      }
-
-      .navbar .nav-link:hover {
-        color: var(--color-accent);
-        background-color: rgba(84, 100, 196, 0.1);
-      }
-
-      .hero-section {
-        background: linear-gradient(var(--hero-bg-filter), var(--hero-bg-filter)),
-          url("https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1600&q=80")
-            no-repeat center center;
-        background-size: cover;
-        color: var(--text-primary);
-        margin-top: 0;
-        padding-top: 140px;
-        padding-bottom: 80px;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        position: relative;
-      }
-
-      .hero-section::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: radial-gradient(
-          circle at center,
-          rgba(84, 100, 196, 0.05) 0%,
-          var(--color-primary) 70%
-        );
-        z-index: 1;
-      }
-
-      .hero-section .container {
-        position: relative;
-        z-index: 2;
-      }
-
-      .hero-section h1 {
-        margin-bottom: 1.5rem;
-        color: var(--text-primary);
-        letter-spacing: -1px;
-      }
-
-      .hero-section .lead {
-        font-size: 1.25rem;
-        margin-bottom: 2rem;
-        color: var(--text-secondary);
-      }
-
-      .bg-light {
-        background-color: var(--color-secondary) !important;
-      }
-
-      .card {
-        background-color: var(--color-secondary-lighter);
-        border: none;
-        border-radius: 12px;
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        overflow: hidden;
-        border: 1px solid var(--border-subtle);
-      }
-
-      .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-      }
-
-      .card-body {
-        padding: 1.5rem;
-      }
-
-      .card-body * {
-        color: var(--text-primary);
-      }
-
-      .form-control {
-        background-color: var(--color-secondary-darker);
-        border: 1px solid var(--border-subtle);
-        border-radius: 8px;
-        color: var(--text-primary);
-        transition: all 0.3s ease;
-        font-family: "JetBrains Mono", monospace;
-        font-size: 0.95rem;
-      }
-
-      .form-control:focus {
-        background-color: var(--color-secondary);
-        border-color: var(--color-accent);
-        color: var(--text-primary);
-        box-shadow: 0 0 0 0.25rem rgba(84, 100, 196, 0.15);
-      }
-
-      .form-label {
-        color: var(--text-primary);
-        font-weight: 500;
-      }
-
-      ::placeholder {
-        color: var(--text-muted) !important;
-        opacity: 1;
-        font-family: "JetBrains Mono", monospace;
-        font-size: 0.9rem;
-      }
-
-      .btn {
-        border-radius: 30px;
-        padding: 0.5rem 1.5rem;
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-        font-weight: 500;
-        letter-spacing: 0.5px;
-        font-family: "JetBrains Mono", monospace;
-      }
-
-      .btn-primary {
-        background-color: var(--color-accent);
-        border-color: var(--color-accent);
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        color: white;
-      }
-
-      .btn-primary:hover {
-        background-color: var(--color-accent-lighter);
-        border-color: var(--color-accent-lighter);
-        transform: translateY(-3px);
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
-      }
-
-      .btn-outline-light {
-        color: var(--text-primary);
-        border-color: var(--border-subtle);
-      }
-
-      .btn-outline-light:hover {
-        background-color: rgba(84, 100, 196, 0.1);
-        color: var(--color-accent);
-        border-color: var(--color-accent);
-      }
-
-      .skill-icon {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-      }
-
-      .section-heading {
-        position: relative;
-        padding-bottom: 15px;
-        margin-bottom: 30px;
-        color: var(--text-primary);
-        text-align: center;
-        font-weight: 700;
-        letter-spacing: -0.5px;
-      }
-
-      .section-heading:after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        margin: 0 auto;
-        width: 80px;
-        height: 2px;
-        background: var(--color-accent);
-      }
-
-      .project-card {
-        background-color: var(--color-secondary-lighter);
-        border-radius: 12px;
-        overflow: hidden;
-        margin-bottom: 20px;
-        border: 1px solid var(--border-subtle);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-      }
-
-      .project-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-      }
-
-      .project-image {
-        height: 220px;
-        background-color: var(--color-secondary-darker);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--text-muted);
-        font-size: 0.9rem;
-      }
-
-      .project-info {
-        padding: 20px;
-      }
-
-      .project-tags {
-        display: flex;
-        flex-wrap: wrap;
-        margin-bottom: 15px;
-        gap: 8px;
-      }
-
-      .tag {
-        background-color: rgba(84, 100, 196, 0.1);
-        color: var(--text-muted);
-        padding: 4px 10px;
-        border-radius: 5px;
-        font-size: 0.8rem;
-      }
-
-      .project-link {
-        color: var(--color-accent);
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-        font-size: 0.9rem;
-        transition: all 0.3s ease;
-      }
-
-      .project-link:hover {
-        color: var(--color-accent-lighter);
-        text-decoration: none;
-      }
-
-      .contact-info i {
-        margin-right: 10px;
-        color: var(--color-accent);
-      }
-
-      .contact-info span {
-        color: var(--text-primary);
-        font-size: 0.9rem;
-      }
-
-      .footer-gradient {
-        background: linear-gradient(
-          135deg,
-          var(--color-secondary-darker) 0%,
-          var(--color-secondary) 100%
-        );
-        color: var(--text-primary);
-        position: relative;
-        border-top: 1px solid var(--border-subtle);
-      }
-
-      .footer-content {
-        position: relative;
-        z-index: 2;
-      }
-
-      .footer-logo {
-        font-weight: 700;
-        margin-bottom: 0;
-        color: var(--color-accent);
-        letter-spacing: -0.5px;
-      }
-
-      .footer-tagline {
-        opacity: 0.8;
-        font-size: 0.9rem;
-      }
-
-      .social-links {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-      }
-
-      .social-icon {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background-color: rgba(84, 100, 196, 0.1);
-        color: var(--color-accent);
-        transition: all 0.3s ease;
-      }
-
-      .social-icon:hover {
-        background-color: var(--color-accent);
-        color: white;
-        transform: translateY(-3px);
-      }
-
-      .footer-link {
-        color: var(--text-secondary);
-        margin-left: 20px;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        font-size: 0.9rem;
-      }
-
-      .footer-link:hover {
-        color: var(--color-accent);
-      }
-
-      .footer-divider {
-        height: 1px;
-        background: linear-gradient(
-          90deg,
-          rgba(84, 100, 196, 0) 0%,
-          rgba(84, 100, 196, 0.15) 50%,
-          rgba(84, 100, 196, 0) 100%
-        );
-        margin: 20px 0;
-      }
-
-      .copyright {
-        font-size: 0.9rem;
-        color: var(--text-secondary);
-        margin-bottom: 0;
-      }
-
-      @media (max-width: 767.98px) {
-        .hero-section {
-          padding-top: 100px;
-          padding-bottom: 60px;
-          min-height: auto;
-        }
-
-        h1.display-3 {
-          font-size: 2.3rem;
-        }
-
-        .social-links {
-          margin-bottom: 15px;
-        }
-
-        .footer-link {
-          margin-left: 10px;
-          font-size: 0.85rem;
-        }
-
-        body {
-          font-size: 0.95rem;
-        }
-
-        .contact-info span {
-          font-size: 0.85rem;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="Style.css" />
   </head>
 
   <body>
+    <!-- Preloader -->
+    <div id="preloader">
+      <div class="loader">
+        <svg viewBox="0 0 80 80">
+          <circle id="loader-circle" cx="40" cy="40" r="32"></circle>
+        </svg>
+        <div class="loader-text">MIHAIL<span class="loader-dot">.</span></div>
+      </div>
+    </div>
+
     <!-- Header -->
     <header>
       <nav class="navbar navbar-expand-md fixed-top glass-nav">
@@ -559,7 +81,23 @@ html[data-theme="light"] {
               <!-- Theme Toggle Button -->
               <li class="nav-item d-flex align-items-center ms-2">
                 <button id="theme-toggle" class="theme-toggle" title="Toggle Theme">
-                  <i class="fas fa-moon"></i>
+                  <div class="theme-toggle-track">
+                    <div class="theme-toggle-thumb"></div>
+                    <svg class="theme-toggle-icon sun-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="5"></circle>
+                      <line x1="12" y1="1" x2="12" y2="3"></line>
+                      <line x1="12" y1="21" x2="12" y2="23"></line>
+                      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                      <line x1="1" y1="12" x2="3" y2="12"></line>
+                      <line x1="21" y1="12" x2="23" y2="12"></line>
+                      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="theme-toggle-icon moon-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                  </div>
                 </button>
               </li>
             </ul>
@@ -582,33 +120,35 @@ html[data-theme="light"] {
         </div>
       </section>
 
-<!-- About Me Section -->
-<section id="about" class="py-5">
-    <div class="container">
-      <h2 class="section-heading gradient-text">About Me</h2>
-      <div class="row align-items-center">
-        <div class="col-md-6 mb-4 mb-md-0">
-          <img
-            src="https://i.redd.it/zubomnvmmmq71.png"
-            alt="Unity Game Development"
-            class="img-fluid rounded shadow subtle-border"
-          />
-        </div>
-        <div class="col-md-6">
-          <p>I'm a passionate Unity and C# developer with a focus on creating clean, efficient code and engaging user experiences. My strength lies in game development, where I combine technical skills with creative problem-solving.</p>
-          <p>When I'm not coding, I'm focusing on career growth and self-improvement. I spend time at the gym, pushing my limits, and working on developing the right mindset for success.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+      <!-- About Me Section -->
+      <section id="about" class="py-5">
+          <div class="container">
+            <h2 class="section-heading gradient-text">About Me</h2>
+            <div class="row align-items-center">
+              <div class="col-md-6 mb-4 mb-md-0">
+                <img
+                  src="https://i.redd.it/zubomnvmmmq71.png"
+                  alt="Unity Game Development"
+                  class="img-fluid rounded shadow subtle-border"
+                />
+              </div>
+              <div class="col-md-6">
+                <p>I'm a passionate Unity and C# developer with a focus on creating clean, efficient code and engaging user experiences. My strength lies in game development, where I combine technical skills with creative problem-solving.</p>
+                <p>When I'm not coding, I'm focusing on career growth and self-improvement. I spend time at the gym, pushing my limits, and working on developing the right mindset for success.</p>
+              </div>
+            </div>
+          </div>
+        </section>
 
       <!-- Skills Section -->
       <section id="skills" class="py-5 bg-light">
         <div class="container">
           <h2 class="section-heading gradient-text">My Skills</h2>
-          <div class="row text-center g-4">
+          
+          <div class="row g-4">
+            <!-- Main skill categories -->
             <div class="col-md-4">
-              <div class="card h-100">
+              <div class="card h-100 fade-in">
                 <div class="card-body">
                   <i class="fas fa-gamepad skill-icon text-danger"></i>
                   <h3 class="h4">Game Development</h3>
@@ -617,7 +157,7 @@ html[data-theme="light"] {
               </div>
             </div>
             <div class="col-md-4">
-              <div class="card h-100">
+              <div class="card h-100 fade-in fade-in-delay-1">
                 <div class="card-body">
                   <i class="fas fa-server skill-icon text-success"></i>
                   <h3 class="h4">Back-End Development</h3>
@@ -626,11 +166,92 @@ html[data-theme="light"] {
               </div>
             </div>
             <div class="col-md-4">
-              <div class="card h-100">
+              <div class="card h-100 fade-in fade-in-delay-2">
                 <div class="card-body">
                   <i class="fas fa-database skill-icon text-primary"></i>
                   <h3 class="h4">Database Design</h3>
                   <p>Basic knowledge of SQL, including PostgreSQL and MySQL.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Skill bars section -->
+          <div class="mt-5 pt-3">
+            <h3 class="h4 text-center mb-4">Technical Proficiency</h3>
+            
+            <div class="row">
+              <div class="col-md-6">
+                <!-- Programming Languages -->
+                <div class="skill-category mb-4">
+                  <h4 class="h5 mb-3">Programming Languages</h4>
+                  
+                  <div class="skill-item mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                      <span class="skill-name">C#</span>
+                      <span class="skill-percentage">90%</span>
+                    </div>
+                    <div class="skill-bar-bg">
+                      <div class="skill-bar" data-width="90"></div>
+                    </div>
+                  </div>
+                  
+                  <div class="skill-item mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                      <span class="skill-name">JavaScript</span>
+                      <span class="skill-percentage">65%</span>
+                    </div>
+                    <div class="skill-bar-bg">
+                      <div class="skill-bar" data-width="65"></div>
+                    </div>
+                  </div>
+                  
+                  <div class="skill-item mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                      <span class="skill-name">Java</span>
+                      <span class="skill-percentage">40%</span>
+                    </div>
+                    <div class="skill-bar-bg">
+                      <div class="skill-bar" data-width="40"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-md-6">
+                <!-- Tools & Frameworks -->
+                <div class="skill-category mb-4">
+                  <h4 class="h5 mb-3">Tools & Frameworks</h4>
+                  
+                  <div class="skill-item mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                      <span class="skill-name">Unity</span>
+                      <span class="skill-percentage">85%</span>
+                    </div>
+                    <div class="skill-bar-bg">
+                      <div class="skill-bar" data-width="85"></div>
+                    </div>
+                  </div>
+                  
+                  <div class="skill-item mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                      <span class="skill-name">.NET</span>
+                      <span class="skill-percentage">70%</span>
+                    </div>
+                    <div class="skill-bar-bg">
+                      <div class="skill-bar" data-width="70"></div>
+                    </div>
+                  </div>
+                  
+                  <div class="skill-item mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                      <span class="skill-name">Git</span>
+                      <span class="skill-percentage">75%</span>
+                    </div>
+                    <div class="skill-bar-bg">
+                      <div class="skill-bar" data-width="75"></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -643,13 +264,13 @@ html[data-theme="light"] {
         <div class="container">
           <h2 class="section-heading gradient-text">My Projects</h2>
           <div class="text-center mb-4">
-            <button class="btn btn-outline-light me-2 active">All</button>
-            <button class="btn btn-outline-light me-2">Game Dev</button>
-            <button class="btn btn-outline-light">Web Dev</button>
+            <button class="btn btn-outline-light me-2 active">all</button>
+            <button class="btn btn-outline-light me-2">game dev</button>
+            <button class="btn btn-outline-light">web dev</button>
           </div>
-          <div class="row">
+          <div class="row" id="projects-grid">
             <div class="col-md-6 col-lg-4 mb-4">
-              <div class="project-card">
+              <div class="project-card" data-category="game-dev">
                 <div class="project-image">
                   <i class="fas fa-image me-2"></i> Project Image
                 </div>
@@ -657,8 +278,9 @@ html[data-theme="light"] {
                   <h3 class="h5 mb-3">Horror Game 'Bio'</h3>
                   <p class="mb-3">A psychological horror game developed with Unity and C#, featuring immersive environments.</p>
                   <div class="project-tags">
-                    <span class="tag">Unity</span>
-                    <span class="tag">C#</span>
+                    <span class="tag">unity</span>
+                    <span class="tag">c#</span>
+                    <span class="tag">game dev</span>
                   </div>
                   <a href="#" class="project-link">
                     View project <i class="fas fa-arrow-right"></i>
@@ -666,7 +288,27 @@ html[data-theme="light"] {
                 </div>
               </div>
             </div>
-            <!-- You can add more project cards here -->
+            
+            <!-- Additional project example -->
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="project-card" data-category="web-dev">
+                <div class="project-image">
+                  <i class="fas fa-image me-2"></i> Project Image
+                </div>
+                <div class="project-info">
+                  <h3 class="h5 mb-3">Portfolio Website</h3>
+                  <p class="mb-3">A responsive personal portfolio website built with HTML, CSS, and JavaScript.</p>
+                  <div class="project-tags">
+                    <span class="tag">html</span>
+                    <span class="tag">css</span>
+                    <span class="tag">web dev</span>
+                  </div>
+                  <a href="#" class="project-link">
+                    View project <i class="fas fa-arrow-right"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -764,114 +406,7 @@ html[data-theme="light"] {
             </div>
         </div>
     </section>
-    <style>
-        /* Enhanced form input styles */
-        .form-control {
-            transition: all 0.3s ease;
-            padding-left: 2.5rem !important;
-        }
-    
-        .form-control:focus {
-            box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.25);
-            border-color: var(--color-accent);
-        }
-    
-        .input-group-text {
-            color: var(--text-muted);
-            z-index: 5;
-        }
-    
-        /* Submit button hover and focus states */
-        #submit-btn:hover,
-        #submit-btn:focus {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
-        }
-    
-        /* Character count styling */
-        #message-count {
-            font-size: 0.75rem;
-            right: 0;
-            top: 100%;
-        }
-    </style>
-    
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const form = document.getElementById('contact-form');
-        const messageTextarea = document.getElementById('message');
-        const messageCount = document.getElementById('message-count');
-        const submitBtn = document.getElementById('submit-btn');
-    
-        // Character count for message
-        messageTextarea.addEventListener('input', function() {
-            const currentLength = this.value.length;
-            messageCount.textContent = `${currentLength} / 500`;
-            
-            // Change color based on length
-            if (currentLength > 450) {
-                messageCount.classList.add('text-danger');
-            } else {
-                messageCount.classList.remove('text-danger');
-            }
-        });
-    
-        // Form validation
-        form.addEventListener('submit', function(event) {
-            // Prevent default form submission
-            event.preventDefault();
-            
-            // Remove previous validation states
-            form.classList.remove('was-validated');
-            
-            // Check form validity
-            if (form.checkValidity()) {
-                // Disable submit button and show loading state
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = `
-                    <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                    Sending...
-                `;
-    
-                // Simulate form submission (replace with actual form submission logic)
-                setTimeout(() => {
-                    // Reset form and button
-                    form.reset();
-                    messageCount.textContent = '0 / 500';
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = `
-                        <i class="fas fa-paper-plane me-2"></i> 
-                        <span>Send Message</span>
-                    `;
-                    
-                    // Show success message (you could use a modal or toast)
-                    alert('Message sent successfully!');
-                }, 2000);
-            } else {
-                // Mark form as validated to show error states
-                form.classList.add('was-validated');
-            }
-        });
-    
-        // Real-time validation
-        const inputs = form.querySelectorAll('input, textarea');
-        inputs.forEach(input => {
-            input.addEventListener('input', function() {
-                // Custom validation for name (letters only)
-                if (input.id === 'name') {
-                    input.value = input.value.replace(/[^A-Za-z\s]/g, '');
-                }
-                
-                // Remove validation state if input becomes valid
-                if (input.validity.valid) {
-                    input.classList.remove('is-invalid');
-                } else {
-                    input.classList.add('is-invalid');
-                }
-            });
-        });
-    });
-    </script>
+
     </main>
 
     <!-- Footer -->
@@ -915,86 +450,14 @@ html[data-theme="light"] {
             </div>
         </div>
     </footer>
-    
-    <style>
-        @media (max-width: 767.98px) {
-            .footer-gradient .social-links {
-                justify-content: center;
-            }
-            
-            .footer-gradient .footer-link {
-                display: block;
-                margin-bottom: 0.5rem;
-                text-align: center;
-            }
-            
-            .footer-gradient .footer-content > .row > div {
-                text-align: center !important;
-            }
-        }
-    </style>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
-
-    <script>
-      // Theme toggler script
-      document.addEventListener('DOMContentLoaded', function() {
-        // Get the theme toggle button
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeIcon = themeToggle.querySelector('i');
-        
-        // Check for saved theme preference or default to dark
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        
-        // Apply the saved theme
-        document.documentElement.setAttribute('data-theme', savedTheme);
-        
-        // Update toggle button icon based on current theme
-        updateThemeIcon(savedTheme);
-        
-        // Add click event to theme toggle button
-        themeToggle.addEventListener('click', function() {
-          // Get current theme
-          const currentTheme = document.documentElement.getAttribute('data-theme');
-          
-          // Toggle theme
-          const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-          
-          // Save theme preference
-          localStorage.setItem('theme', newTheme);
-          
-          // Apply the new theme
-          document.documentElement.setAttribute('data-theme', newTheme);
-          
-          // Update toggle button icon
-          updateThemeIcon(newTheme);
-        });
-        
-        // Function to update the theme icon
-        function updateThemeIcon(theme) {
-          if (theme === 'dark') {
-            themeIcon.className = 'fas fa-sun';
-          } else {
-            themeIcon.className = 'fas fa-moon';
-          }
-        }
-      });
-      
-      // Update current year
-      document.getElementById('current-year').textContent = new Date().getFullYear();
-      
-      // Add active class to buttons
-      const filterBtns = document.querySelectorAll('.btn-outline-light');
-      filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          filterBtns.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-        });
-      });
-    </script>
+    
+    <!-- Your JavaScript file -->
+    <script src="main.js"></script>
   </body>
 </html>
