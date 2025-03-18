@@ -8,7 +8,7 @@
 
 /* Primary color scheme and variables */
 :root {
-    /* Primary color scheme */
+    /* Primary color scheme - DARK THEME (DEFAULT) */
     --color-primary: #0F172A;
     --color-primary-lighter: #1E293B;
     --color-secondary: #334155;
@@ -36,7 +36,7 @@
     --hero-bg-filter: rgba(15, 23, 42, 0.9);
 }
 
-/* Light theme */
+/* Light theme - DIFFERENT COLORS */
 html[data-theme="light"] {
     /* Primary color scheme */
     --color-primary: #1a2333;
@@ -55,7 +55,7 @@ html[data-theme="light"] {
     --text-secondary: rgba(255, 255, 255, 0.7);
     --text-muted: rgba(255, 255, 255, 0.5);
     
-    /* Background elements */
+    /* Background elements - LIGHTER BLUES */
     --dark-bg: #192336;
     --darker-bg: #131b2b;
     --card-bg: #1a2333;
@@ -377,6 +377,14 @@ html[data-theme="light"] .theme-toggle-thumb {
   transform: translateX(28px);
 }
 
+html[data-theme="light"] .theme-toggle::before {
+  opacity: 0;
+}
+
+html[data-theme="light"] .theme-toggle::after {
+  opacity: 1;
+}
+
 /* Moon and sun icons */
 .theme-toggle::before, 
 .theme-toggle::after {
@@ -402,12 +410,12 @@ html[data-theme="light"] .theme-toggle-thumb {
   opacity: 0;
 }
 
-html[data-theme="light"] .theme-toggle::before {
-  opacity: 0;
-}
-
-html[data-theme="light"] .theme-toggle::after {
-  opacity: 1;
+/* Social Links - Fixed for alignment */
+.social-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
 }
 
 /* Add page transition for theme change */
@@ -430,7 +438,7 @@ html[data-theme="light"] .theme-toggle::after {
   pointer-events: all;
 }
 
-/* Ripple effect for buttons */
+/* Ripple effect for buttons - FIXED */
 .ripple {
   position: absolute;
   background-color: rgba(255, 255, 255, 0.3);
@@ -821,13 +829,6 @@ html {
     color: var(--text-primary);
 }
 
-.social-links {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-}
-
 .social-icon {
     display: flex;
     align-items: center;
@@ -852,4 +853,50 @@ html {
 
 .footer-link:hover {
     color: var(--color-accent);
+}
+
+/* Ensure elements use correct theme colors */
+.card, .project-card, .skill-category {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-subtle);
+}
+
+.btn-outline-light {
+  border-color: var(--border-subtle);
+}
+
+.form-control {
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  border-color: var(--border-subtle);
+}
+
+.form-control:focus {
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+}
+
+.glass-nav {
+  background-color: rgba(13, 20, 33, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.project-image {
+  background-color: var(--darker-bg);
+}
+
+.footer-gradient {
+  background-color: var(--darker-bg);
+}
+
+/* Fix for mobile responsiveness */
+@media (max-width: 576px) {
+  .social-links {
+    gap: 15px;
+  }
+  
+  .theme-toggle {
+    margin-top: 10px;
+  }
 }

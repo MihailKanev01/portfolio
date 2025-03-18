@@ -19,6 +19,59 @@ document.addEventListener('DOMContentLoaded', function() {
       }, 800);
     });
     
+    // ===== Theme Toggle - FIXED =====
+    // Apply saved theme
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    
+    // Theme toggle handler
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+      themeToggle.addEventListener('click', function() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const themeTransition = document.querySelector('.theme-transition');
+        
+        // Show transition overlay
+        if (themeTransition) {
+          themeTransition.style.opacity = '0.9';
+          themeTransition.style.pointerEvents = 'all';
+        }
+        
+        // Change theme after delay
+        setTimeout(function() {
+          // Toggle theme
+          const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+          localStorage.setItem('theme', newTheme);
+          document.documentElement.setAttribute('data-theme', newTheme);
+          
+          // Hide overlay after theme change
+          setTimeout(function() {
+            if (themeTransition) {
+              themeTransition.style.opacity = '0';
+              themeTransition.style.pointerEvents = 'none';
+            }
+          }, 300);
+        }, 100);
+        
+        // Add ripple effect to theme toggle
+        const ripple = document.createElement('span');
+        ripple.className = 'ripple';
+        
+        const rect = themeToggle.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        
+        ripple.style.width = ripple.style.height = `${size}px`;
+        ripple.style.left = `${event.clientX - rect.left - size/2}px`;
+        ripple.style.top = `${event.clientY - rect.top - size/2}px`;
+        
+        themeToggle.appendChild(ripple);
+        
+        setTimeout(() => {
+          ripple.remove();
+        }, 600);
+      });
+    }
+    
     // ===== Smooth Scrolling =====
     const navLinks = document.querySelectorAll('a[href^="#"]');
     
@@ -110,70 +163,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Check for scroll reveal on scroll
     window.addEventListener('scroll', checkScrollReveal);
-    
-    // ===== Theme Toggle =====
-    // Create theme transition overlay if it doesn't exist
-    let themeTransition = document.querySelector('.theme-transition');
-    if (!themeTransition) {
-      themeTransition = document.createElement('div');
-      themeTransition.className = 'theme-transition';
-      document.body.appendChild(themeTransition);
-    }
-    
-    // Get the theme toggle button
-    const themeToggle = document.getElementById('theme-toggle');
-    if (themeToggle) {
-      // Check for saved theme preference or default to dark
-      const savedTheme = localStorage.getItem('theme') || 'dark';
-      
-      // Apply the saved theme
-      document.documentElement.setAttribute('data-theme', savedTheme);
-      
-      // Add click event to theme toggle button
-      themeToggle.addEventListener('click', function() {
-        // Get current theme
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        
-        // Activate transition overlay
-        themeTransition.classList.add('active');
-        
-        // Toggle theme after a slight delay
-        setTimeout(() => {
-          // Toggle theme
-          const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-          
-          // Save theme preference
-          localStorage.setItem('theme', newTheme);
-          
-          // Apply the new theme
-          document.documentElement.setAttribute('data-theme', newTheme);
-          
-          // Deactivate transition overlay after theme change
-          setTimeout(() => {
-            themeTransition.classList.remove('active');
-          }, 300);
-        }, 100);
-      });
-      
-      // Add ripple effect to theme toggle
-      themeToggle.addEventListener('mousedown', function(e) {
-        const ripple = document.createElement('span');
-        ripple.className = 'ripple';
-        
-        const rect = themeToggle.getBoundingClientRect();
-        const size = Math.max(rect.width, rect.height);
-        
-        ripple.style.width = ripple.style.height = `${size}px`;
-        ripple.style.left = `${e.clientX - rect.left - size/2}px`;
-        ripple.style.top = `${e.clientY - rect.top - size/2}px`;
-        
-        themeToggle.appendChild(ripple);
-        
-        setTimeout(() => {
-          ripple.remove();
-        }, 600);
-      });
-    }
   
     // ===== Contact Form =====
     const form = document.getElementById('contact-form');
