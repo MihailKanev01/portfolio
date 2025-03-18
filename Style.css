@@ -39,31 +39,31 @@
 /* Light theme */
 html[data-theme="light"] {
     /* Primary color scheme */
-    --color-primary: #F8FAFC;
-    --color-primary-lighter: #FFFFFF;
-    --color-secondary: #F1F5F9;
-    --color-secondary-lighter: #E2E8F0;
-    --color-secondary-darker: #CBD5E1;
+    --color-primary: #1a2333;
+    --color-primary-lighter: #1E293B;
+    --color-secondary: #334155;
+    --color-secondary-lighter: #475569;
+    --color-secondary-darker: #1E293B;
     
     /* Accent color - keeping consistent */
-    --color-accent: #2563EB;
-    --color-accent-lighter: #3B82F6;
-    --color-accent-darker: #1D4ED8;
+    --color-accent: #3B82F6;
+    --color-accent-lighter: #60A5FA;
+    --color-accent-darker: #2563EB;
     
     /* Text colors */
-    --text-primary: #1E293B;
-    --text-secondary: #475569;
-    --text-muted: #64748B;
+    --text-primary: rgba(255, 255, 255, 0.9);
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --text-muted: rgba(255, 255, 255, 0.5);
     
     /* Background elements */
-    --dark-bg: #f3f4f6;
-    --darker-bg: #e5e7eb;
-    --card-bg: #ffffff;
-    --input-bg: #f9fafb;
+    --dark-bg: #192336;
+    --darker-bg: #131b2b;
+    --card-bg: #1a2333;
+    --input-bg: #1a2333;
     
     /* UI elements */
-    --border-subtle: rgba(37, 99, 235, 0.15);
-    --hero-bg-filter: rgba(248, 250, 252, 0.9);
+    --border-subtle: rgba(59, 130, 246, 0.15);
+    --hero-bg-filter: rgba(15, 23, 42, 0.9);
 }
 
 body {
@@ -138,6 +138,10 @@ a {
     margin-bottom: 40px;
     font-size: 1.8rem;
     color: var(--text-primary);
+}
+
+.bg-light {
+    background-color: var(--color-primary-lighter);
 }
 
 .bg-dark {
@@ -447,11 +451,16 @@ html[data-theme="light"] .theme-toggle::after {
 .form-control {
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
     padding-left: 2.5rem !important;
+    background-color: var(--input-bg);
+    color: var(--text-primary);
+    border-color: var(--border-subtle);
 }
 
 .form-control:focus {
     box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.25);
     border-color: var(--color-accent);
+    background-color: var(--input-bg);
+    color: var(--text-primary);
 }
 
 .form-control.is-valid {
@@ -516,6 +525,8 @@ html[data-theme="light"] .theme-toggle::after {
 .alert {
     animation: slideInDown 0.5s forwards;
     border-left: 4px solid;
+    background-color: var(--card-bg);
+    color: var(--text-primary);
 }
 
 .alert-success {
@@ -539,16 +550,9 @@ html[data-theme="light"] .theme-toggle::after {
 
 /* Card background fix for consistent colors */
 .card, .project-card, .skill-category {
-  background-color: var(--darker-bg);
+  background-color: var(--card-bg);
   color: var(--text-primary);
   border: 1px solid rgba(59, 130, 246, 0.15);
-}
-
-html[data-theme="light"] .card,
-html[data-theme="light"] .project-card,
-html[data-theme="light"] .skill-category {
-  background-color: white;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 /* Skill bars styling */
@@ -608,11 +612,6 @@ html[data-theme="light"] .skill-category {
   }
 }
 
-/* For light theme adjustments */
-html[data-theme="light"] .skill-bar {
-  background: linear-gradient(90deg, var(--color-accent-darker), var(--color-accent-lighter));
-}
-
 /* Skill card icon colors - keep them vibrant in both themes */
 .text-danger {
   color: #ef4444 !important;
@@ -660,7 +659,7 @@ html {
 
 /* Fixed glass-nav */
 .glass-nav {
-    background-color: rgba(15, 23, 42, 0.8); /* Using direct color values instead of var */
+    background-color: rgba(13, 20, 33, 0.8);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-subtle);
@@ -668,15 +667,6 @@ html {
     padding: 15px 0;
     transition: all 0.3s ease;
     z-index: 1000;
-}
-
-/* Update for different themes */
-html[data-theme="dark"] .glass-nav {
-    background-color: rgba(15, 23, 42, 0.8);
-}
-
-html[data-theme="light"] .glass-nav {
-    background-color: rgba(248, 250, 252, 0.8);
 }
 
 .navbar-brand {
@@ -779,6 +769,17 @@ html[data-theme="light"] .glass-nav {
 .project-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.project-image {
+    padding: 20px;
+    text-align: center;
+    background-color: var(--darker-bg);
+    color: var(--text-muted);
+}
+
+.project-info {
+    padding: 20px;
 }
 
 .project-tags {
