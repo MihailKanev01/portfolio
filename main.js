@@ -131,11 +131,6 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // Add click event to theme toggle button
       themeToggle.addEventListener('click', function() {
-        // Prevent multiple clicks during transition
-        if (themeTransition.classList.contains('active')) {
-          return;
-        }
-        
         // Get current theme
         const currentTheme = document.documentElement.getAttribute('data-theme');
         
@@ -153,16 +148,11 @@ document.addEventListener('DOMContentLoaded', function() {
           // Apply the new theme
           document.documentElement.setAttribute('data-theme', newTheme);
           
-          // Force repaint to avoid flickering
-          document.body.style.display = 'none';
-          document.body.offsetHeight; // Trigger a reflow
-          document.body.style.display = '';
-          
           // Deactivate transition overlay after theme change
           setTimeout(() => {
             themeTransition.classList.remove('active');
           }, 300);
-        }, 200);
+        }, 100);
       });
       
       // Add ripple effect to theme toggle
