@@ -6,54 +6,70 @@
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Primary color scheme and variables */
 :root {
-    --primary-color: #8a2be2; /* Purple */
-    --secondary-color: #2563eb; /* Blue */
-    --dark-bg: #131b2b; /* Dark blue */
-    --darker-bg: #0d1421; /* Darker blue */
-    --text-light: #f3f4f6; /* Light gray */
-    --text-muted: #9ca3af; /* Medium gray */
-    --card-bg: #1a2333; /* Medium dark blue */
-    --input-bg: #1a2333; /* Same as card bg */
+    /* Primary color scheme */
     --color-primary: #0F172A;
     --color-primary-lighter: #1E293B;
     --color-secondary: #334155;
     --color-secondary-lighter: #475569;
     --color-secondary-darker: #1E293B;
+    
+    /* Accent color */
     --color-accent: #3B82F6;
     --color-accent-lighter: #60A5FA;
     --color-accent-darker: #2563EB;
+    
+    /* Text colors */
     --text-primary: rgba(255, 255, 255, 0.9);
     --text-secondary: rgba(255, 255, 255, 0.7);
+    --text-muted: rgba(255, 255, 255, 0.5);
+    
+    /* Background elements */
+    --dark-bg: #131b2b;
+    --darker-bg: #0d1421;
+    --card-bg: #1a2333;
+    --input-bg: #1a2333;
+    
+    /* UI elements */
     --border-subtle: rgba(59, 130, 246, 0.15);
     --hero-bg-filter: rgba(15, 23, 42, 0.9);
 }
 
-/* Light theme (professional) */
+/* Light theme */
 html[data-theme="light"] {
+    /* Primary color scheme */
     --color-primary: #F8FAFC;
     --color-primary-lighter: #FFFFFF;
     --color-secondary: #F1F5F9;
     --color-secondary-lighter: #E2E8F0;
     --color-secondary-darker: #CBD5E1;
+    
+    /* Accent color - keeping consistent */
     --color-accent: #2563EB;
     --color-accent-lighter: #3B82F6;
     --color-accent-darker: #1D4ED8;
+    
+    /* Text colors */
     --text-primary: #1E293B;
     --text-secondary: #475569;
     --text-muted: #64748B;
-    --border-subtle: rgba(37, 99, 235, 0.15);
-    --hero-bg-filter: rgba(248, 250, 252, 0.9);
+    
+    /* Background elements */
     --dark-bg: #f3f4f6;
     --darker-bg: #e5e7eb;
     --card-bg: #ffffff;
     --input-bg: #f9fafb;
+    
+    /* UI elements */
+    --border-subtle: rgba(37, 99, 235, 0.15);
+    --hero-bg-filter: rgba(248, 250, 252, 0.9);
 }
 
 body {
     font-family: 'JetBrains Mono', monospace;
     line-height: 1.6;
-    color: var(--text-light);
+    color: var(--text-primary);
     background-color: var(--dark-bg);
     padding-top: 0;
     overflow-x: hidden;
@@ -68,7 +84,7 @@ body {
 
 a {
     text-decoration: none;
-    color: var(--primary-color);
+    color: var(--color-accent);
 }
 
 /* Buttons */
@@ -80,8 +96,6 @@ a {
     cursor: pointer;
     transition: all 0.3s ease;
     margin: 10px 5px;
-    border-radius: 30px;
-    padding: 0.5rem 1.5rem;
     position: relative;
     overflow: hidden;
     font-weight: 500;
@@ -123,7 +137,7 @@ a {
     text-align: center;
     margin-bottom: 40px;
     font-size: 1.8rem;
-    color: var(--text-light);
+    color: var(--text-primary);
 }
 
 .bg-dark {
@@ -330,6 +344,7 @@ footer p {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: 10px;
 }
 
 .theme-toggle:focus {
@@ -359,6 +374,7 @@ html[data-theme="light"] .theme-toggle-track {
   background-color: var(--color-accent);
   transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   z-index: 2;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 html[data-theme="light"] .theme-toggle-thumb {
@@ -367,8 +383,8 @@ html[data-theme="light"] .theme-toggle-thumb {
 
 .theme-toggle-icon {
   position: absolute;
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
   stroke: var(--text-primary);
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -402,6 +418,7 @@ html[data-theme="light"] .sun-icon {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
+  will-change: opacity;
 }
 
 .theme-transition.active {
@@ -612,8 +629,9 @@ html {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
+/* Fixed glass-nav */
 .glass-nav {
-    background-color: rgba(var(--color-primary-lighter) / 0.8);
+    background-color: rgba(15, 23, 42, 0.8); /* Using direct color values instead of var */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-subtle);
@@ -621,6 +639,15 @@ html {
     padding: 15px 0;
     transition: all 0.3s ease;
     z-index: 1000;
+}
+
+/* Update for different themes */
+html[data-theme="dark"] .glass-nav {
+    background-color: rgba(15, 23, 42, 0.8);
+}
+
+html[data-theme="light"] .glass-nav {
+    background-color: rgba(248, 250, 252, 0.8);
 }
 
 .navbar-brand {
@@ -756,4 +783,29 @@ html {
 .project-link:hover {
     color: var(--color-accent-lighter);
     text-decoration: none;
+}
+
+/* Footer style adjustments */
+.footer-gradient {
+    background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
+}
+
+.social-icon {
+    color: var(--text-primary);
+    background-color: rgba(59, 130, 246, 0.1);
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background-color: var(--color-accent);
+    color: white;
+}
+
+.footer-link {
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+}
+
+.footer-link:hover {
+    color: var(--color-accent);
 }
