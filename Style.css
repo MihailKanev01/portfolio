@@ -330,79 +330,79 @@ footer p {
   width: 40px;
 }
 
-/* Theme toggle styling */
+/* Improved theme toggle styling */
 .theme-toggle {
   background: transparent;
   border: none;
   padding: 0;
   cursor: pointer;
-  width: 48px;
-  height: 24px;
+  width: 56px;
+  height: 28px;
   position: relative;
-  border-radius: 24px;
-  overflow: hidden;
+  border-radius: 28px;
+  overflow: visible;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-left: 10px;
 }
 
-.theme-toggle:focus {
-  outline: none;
-}
-
 .theme-toggle-track {
   background-color: rgba(59, 130, 246, 0.3);
   width: 100%;
   height: 100%;
-  border-radius: 24px;
+  border-radius: 28px;
   position: relative;
-  transition: background-color 0.3s ease;
-}
-
-html[data-theme="light"] .theme-toggle-track {
-  background-color: rgba(59, 130, 246, 0.2);
+  transition: all 0.3s ease;
 }
 
 .theme-toggle-thumb {
   position: absolute;
-  top: 2px;
-  left: 2px;
+  top: 4px;
+  left: 4px;
   width: 20px;
   height: 20px;
   border-radius: 50%;
   background-color: var(--color-accent);
   transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  z-index: 2;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  z-index: 3;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 html[data-theme="light"] .theme-toggle-thumb {
-  transform: translateX(24px);
+  transform: translateX(28px);
 }
 
-.theme-toggle-icon {
+/* Moon and sun icons */
+.theme-toggle::before, 
+.theme-toggle::after {
+  content: '';
   position: absolute;
-  width: 12px;
-  height: 12px;
-  stroke: var(--text-primary);
-  opacity: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  top: 5px;
+  z-index: 2;
   transition: opacity 0.3s ease;
 }
 
-.sun-icon {
-  right: 5px;
-}
-
-.moon-icon {
-  left: 5px;
-}
-
-html[data-theme="dark"] .moon-icon {
+.theme-toggle::before {
+  left: 6px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z'%3E%3C/path%3E%3C/svg%3E") no-repeat center center;
   opacity: 1;
 }
 
-html[data-theme="light"] .sun-icon {
+.theme-toggle::after {
+  right: 6px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FFCC33' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='5'%3E%3C/circle%3E%3Cline x1='12' y1='1' x2='12' y2='3'%3E%3C/line%3E%3Cline x1='12' y1='21' x2='12' y2='23'%3E%3C/line%3E%3Cline x1='4.22' y1='4.22' x2='5.64' y2='5.64'%3E%3C/line%3E%3Cline x1='18.36' y1='18.36' x2='19.78' y2='19.78'%3E%3C/line%3E%3Cline x1='1' y1='12' x2='3' y2='12'%3E%3C/line%3E%3Cline x1='21' y1='12' x2='23' y2='12'%3E%3C/line%3E%3Cline x1='4.22' y1='19.78' x2='5.64' y2='18.36'%3E%3C/line%3E%3Cline x1='18.36' y1='5.64' x2='19.78' y2='4.22'%3E%3C/line%3E%3C/svg%3E") no-repeat center center;
+  opacity: 0;
+}
+
+html[data-theme="light"] .theme-toggle::before {
+  opacity: 0;
+}
+
+html[data-theme="light"] .theme-toggle::after {
   opacity: 1;
 }
 
@@ -537,13 +537,25 @@ html[data-theme="light"] .sun-icon {
     }
 }
 
+/* Card background fix for consistent colors */
+.card, .project-card, .skill-category {
+  background-color: var(--darker-bg);
+  color: var(--text-primary);
+  border: 1px solid rgba(59, 130, 246, 0.15);
+}
+
+html[data-theme="light"] .card,
+html[data-theme="light"] .project-card,
+html[data-theme="light"] .skill-category {
+  background-color: white;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
 /* Skill bars styling */
 .skill-category {
   padding: 1.5rem;
-  background-color: var(--color-secondary-lighter);
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  border: 1px solid var(--border-subtle);
 }
 
 .skill-name {
@@ -560,7 +572,7 @@ html[data-theme="light"] .sun-icon {
 
 .skill-bar-bg {
   height: 8px;
-  background-color: var(--color-secondary-darker);
+  background-color: rgba(59, 130, 246, 0.1);
   border-radius: 4px;
   overflow: hidden;
 }
@@ -601,6 +613,19 @@ html[data-theme="light"] .skill-bar {
   background: linear-gradient(90deg, var(--color-accent-darker), var(--color-accent-lighter));
 }
 
+/* Skill card icon colors - keep them vibrant in both themes */
+.text-danger {
+  color: #ef4444 !important;
+}
+
+.text-success {
+  color: #10b981 !important;
+}
+
+.text-primary {
+  color: #3b82f6 !important;
+}
+
 /* Animate skills on scroll */
 .skill-item {
   opacity: 0;
@@ -622,6 +647,10 @@ html {
 .gradient-text {
     color: var(--color-accent);
     font-weight: 600;
+    background: linear-gradient(90deg, var(--color-accent), var(--color-accent-lighter));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .subtle-border {
@@ -726,7 +755,6 @@ html[data-theme="light"] .glass-nav {
 }
 
 .card {
-    background-color: var(--color-secondary-lighter);
     border: none;
     border-radius: 12px;
     backdrop-filter: blur(10px);
@@ -734,7 +762,6 @@ html[data-theme="light"] .glass-nav {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
-    border: 1px solid var(--border-subtle);
 }
 
 .card:hover {
@@ -743,11 +770,9 @@ html[data-theme="light"] .glass-nav {
 }
 
 .project-card {
-    background-color: var(--color-secondary-lighter);
     border-radius: 12px;
     overflow: hidden;
     margin-bottom: 20px;
-    border: 1px solid var(--border-subtle);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -787,23 +812,34 @@ html[data-theme="light"] .glass-nav {
 
 /* Footer style adjustments */
 .footer-gradient {
-    background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
+    background: var(--darker-bg);
+    border-top: 1px solid rgba(59, 130, 246, 0.1);
+}
+
+.footer-logo, .footer-tagline {
+    color: var(--text-primary);
 }
 
 .social-icon {
-    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
     background-color: rgba(59, 130, 246, 0.1);
+    color: var(--color-accent);
     transition: all 0.3s ease;
 }
 
 .social-icon:hover {
     background-color: var(--color-accent);
     color: white;
+    transform: translateY(-3px);
 }
 
-.footer-link {
+.footer-link, .copyright {
     color: var(--text-secondary);
-    transition: all 0.3s ease;
 }
 
 .footer-link:hover {
