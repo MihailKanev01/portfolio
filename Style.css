@@ -605,6 +605,12 @@ box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 padding: 1.5rem;
 border-radius: 12px;
 box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.skill-category:hover {
+transform: translateY(-5px);
+box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 .skill-name {
@@ -617,6 +623,11 @@ color: var(--text-primary);
 font-size: 0.8rem;
 font-weight: 600;
 color: var(--color-accent);
+transition: transform 0.3s ease;
+}
+
+.skill-item:hover .skill-percentage {
+transform: scale(1.1);
 }
 
 .skill-bar-bg {
@@ -633,6 +644,17 @@ background: linear-gradient(90deg, var(--color-accent-darker), var(--color-accen
 border-radius: 4px;
 position: relative;
 transition: width 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.skill-item {
+opacity: 0;
+transform: translateY(10px);
+transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.skill-item.animate {
+opacity: 1;
+transform: translateY(0);
 }
 
 /* Add shine effect for skill bars */
@@ -670,16 +692,93 @@ color: #10b981 !important;
 color: #3b82f6 !important;
 }
 
-/* Animate skills on scroll */
-.skill-item {
-opacity: 0;
-transform: translateY(10px);
-transition: opacity 0.5s ease, transform 0.5s ease;
+/* Enhanced Skill Section Animations */
+@keyframes slideInRight {
+from {
+  transform: translateX(100px);
+  opacity: 0;
+}
+to {
+  transform: translateX(0);
+  opacity: 1;
+}
 }
 
-.skill-item.animate {
-opacity: 1;
-transform: translateY(0);
+@keyframes slideInLeft {
+from {
+  transform: translateX(-100px);
+  opacity: 0;
+}
+to {
+  transform: translateX(0);
+  opacity: 1;
+}
+}
+
+@keyframes popIn {
+0% {
+  transform: scale(0.6);
+  opacity: 0;
+}
+60% {
+  transform: scale(1.1);
+}
+100% {
+  transform: scale(1);
+  opacity: 1;
+}
+}
+
+.skill-anim-left {
+opacity: 0;
+transform: translateX(-100px);
+}
+
+.skill-anim-right {
+opacity: 0;
+transform: translateX(100px);
+}
+
+.skill-anim-pop {
+opacity: 0;
+transform: scale(0.6);
+}
+
+.skill-anim-left.animate {
+animation: slideInLeft 0.7s forwards;
+}
+
+.skill-anim-right.animate {
+animation: slideInRight 0.7s forwards;
+}
+
+.skill-anim-pop.animate {
+animation: popIn 0.7s forwards;
+}
+
+/* Delay animations for sequential effect */
+.animate-delay-1 {
+animation-delay: 0.1s !important;
+}
+
+.animate-delay-2 {
+animation-delay: 0.2s !important;
+}
+
+.animate-delay-3 {
+animation-delay: 0.3s !important;
+}
+
+.animate-delay-4 {
+animation-delay: 0.4s !important;
+}
+
+.animate-delay-5 {
+animation-delay: 0.5s !important;
+}
+
+.animate-delay-6 {
+animation-delay: 0.6s !important;
 }
 
 /* Additional existing styles from your current stylesheet */

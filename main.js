@@ -374,51 +374,54 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // ===== Skill Bars Animation =====
+  // ===== Skill Section Animations =====
   // Animate skill bars on scroll
   const skillItems = document.querySelectorAll('.skill-item');
-  let animated = false;
+  const skillAnimElements = document.querySelectorAll('.skill-anim-left, .skill-anim-right, .skill-anim-pop');
+  let skillsAnimated = false;
   
-  function animateSkillBars() {
-    if (animated) return;
+  function animateSkillsSection() {
+    if (skillsAnimated) return;
     
     const skillsSection = document.getElementById('skills');
     if (!skillsSection) return;
     
-    const skillBarContainer = skillsSection.querySelector('.mt-5');
-    
-    if (!skillBarContainer) return;
-    
-    const triggerPosition = window.scrollY + window.innerHeight * 0.8;
-    const sectionPosition = skillBarContainer.getBoundingClientRect().top + window.scrollY;
+    const triggerPosition = window.scrollY + window.innerHeight * 0.75;
+    const sectionPosition = skillsSection.getBoundingClientRect().top + window.scrollY;
     
     if (triggerPosition > sectionPosition) {
-      // Animate all skill bars with a delay between each
-      skillItems.forEach((item, index) => {
-        setTimeout(() => {
-          // Add animation class
-          item.classList.add('animate');
-          
-          // Animate the skill bar width
-          const skillBar = item.querySelector('.skill-bar');
-          if (skillBar) {
-            const targetWidth = skillBar.getAttribute('data-width') + '%';
-            skillBar.style.width = targetWidth;
-          }
-        }, 200 * index);
+      // Animate the skill category cards with slide-in and pop effects
+      skillAnimElements.forEach((element) => {
+        element.classList.add('animate');
       });
       
-      animated = true;
-      // Remove scroll listener once animation is triggered
-      window.removeEventListener('scroll', animateSkillBars);
+      // Animate all skill bars with a delay
+      setTimeout(() => {
+        skillItems.forEach((item, index) => {
+          setTimeout(() => {
+            // Add animation class
+            item.classList.add('animate');
+            
+            // Animate the skill bar width
+            const skillBar = item.querySelector('.skill-bar');
+            if (skillBar) {
+              const targetWidth = skillBar.getAttribute('data-width') + '%';
+              skillBar.style.width = targetWidth;
+            }
+          }, 200 * index);
+        });
+      }, 500); // Start after category animations
+      
+      skillsAnimated = true;
+      // Keep listening for scroll to trigger other animations
     }
   }
   
-  // Add scroll event listener for skill bars
-  if (skillItems.length > 0) {
-    window.addEventListener('scroll', animateSkillBars);
+  // Add scroll event listener for skill animations
+  if (skillAnimElements.length > 0 || skillItems.length > 0) {
+    window.addEventListener('scroll', animateSkillsSection);
     // Check on page load as well
-    setTimeout(animateSkillBars, 500);
+    setTimeout(animateSkillsSection, 500);
   }
 
   // ===== Update current year =====
