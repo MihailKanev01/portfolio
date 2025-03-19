@@ -478,6 +478,17 @@ to {
   border-color: var(--border-subtle);
 }
 
+/* Fix placeholder colors for better visibility in dark theme */
+.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+  opacity: 1;
+}
+
+html[data-theme="light"] .form-control::placeholder {
+  color: rgba(15, 23, 42, 0.4);
+  opacity: 1;
+}
+
 .form-control:focus {
   box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.25);
   border-color: var(--color-accent);
@@ -504,6 +515,11 @@ to {
 .invalid-feedback {
   color: #ef4444;
   display: none;
+}
+
+/* Ensure error messages are always visible */
+.form-text, .text-muted {
+  color: var(--text-muted) !important;
 }
 
 .form-control.is-invalid + .invalid-feedback {
