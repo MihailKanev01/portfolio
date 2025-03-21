@@ -692,93 +692,51 @@ color: #10b981 !important;
 color: #3b82f6 !important;
 }
 
-/* Enhanced Skill Section Animations */
-@keyframes slideInRight {
-from {
-  transform: translateX(100px);
-  opacity: 0;
-}
-to {
-  transform: translateX(0);
-  opacity: 1;
-}
-}
-
-@keyframes slideInLeft {
-from {
-  transform: translateX(-100px);
-  opacity: 0;
-}
-to {
-  transform: translateX(0);
-  opacity: 1;
-}
-}
-
-@keyframes popIn {
-0% {
-  transform: scale(0.6);
-  opacity: 0;
-}
-60% {
-  transform: scale(1.1);
-}
-100% {
-  transform: scale(1);
-  opacity: 1;
-}
-}
-
-.skill-anim-left {
+/* Scroll-Driven Animations */
+.animate-on-scroll {
 opacity: 0;
-transform: translateX(-100px);
+transition: opacity 0.5s ease, transform 0.5s ease;
+will-change: opacity, transform;
 }
 
-.skill-anim-right {
-opacity: 0;
+.animate-on-scroll.is-visible {
+opacity: 1;
+}
+
+/* Default styles for animation types */
+.slide-left {
 transform: translateX(100px);
 }
 
-.skill-anim-pop {
-opacity: 0;
-transform: scale(0.6);
+.slide-right {
+transform: translateX(-100px);
 }
 
-.skill-anim-left.animate {
-animation: slideInLeft 0.7s forwards;
+.slide-up {
+transform: translateY(50px);
 }
 
-.skill-anim-right.animate {
-animation: slideInRight 0.7s forwards;
+.scale-in {
+transform: scale(0.8);
 }
 
-.skill-anim-pop.animate {
-animation: popIn 0.7s forwards;
+/* Base styles without transitions for scroll-driven animations */
+.animate-on-scroll.is-visible {
+/* We'll handle these dynamically in JS */
+transition: none;
 }
 
-/* Delay animations for sequential effect */
-.animate-delay-1 {
-animation-delay: 0.1s !important;
+/* Skill bars have special handling */
+.skill-bar {
+width: 0; /* Will be set dynamically by JS */
+transition: none; /* No transition, will be controlled by scroll */
 }
 
-.animate-delay-2 {
-animation-delay: 0.2s !important;
-}
-
-.animate-delay-3 {
-animation-delay: 0.3s !important;
-}
-
-.animate-delay-4 {
-animation-delay: 0.4s !important;
-}
-
-.animate-delay-5 {
-animation-delay: 0.5s !important;
-}
-
-.animate-delay-6 {
-animation-delay: 0.6s !important;
+/* Backup traditional animations for browsers without Intersection Observer */
+.animate-on-scroll.fallback-active {
+opacity: 1;
+transform: translate(0) scale(1);
+transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
 /* Additional existing styles from your current stylesheet */
