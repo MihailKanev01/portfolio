@@ -374,109 +374,54 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // ===== Scroll-Driven Animations =====
-  // Use Intersection Observer to handle scroll-based animations
-  const animateOnScroll = () => {
-    const elements = document.querySelectorAll('.animate-on-scroll');
+  // ===== Skill Section Animations =====
+  // Animate skill bars on scroll
+  const skillItems = document.querySelectorAll('.skill-item');
+  const skillAnimElements = document.querySelectorAll('.skill-anim-left, .skill-anim-right, .skill-anim-pop');
+  let skillsAnimated = false;
+  
+  function animateSkillsSection() {
+    if (skillsAnimated) return;
     
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        // Add or remove class based on visibility
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-        } else {
-          entry.target.classList.remove('is-visible');
-        }
-        
-        // Calculate how far the element is through the viewport
-        const scrollProgress = calculateScrollProgress(entry);
-        if (scrollProgress >= 0 && scrollProgress <= 1) {
-          // Apply scroll-based animations
-          applyScrollAnimations(entry.target, scrollProgress);
-        }
+    const skillsSection = document.getElementById('skills');
+    if (!skillsSection) return;
+    
+    const triggerPosition = window.scrollY + window.innerHeight * 0.75;
+    const sectionPosition = skillsSection.getBoundingClientRect().top + window.scrollY;
+    
+    if (triggerPosition > sectionPosition) {
+      // Animate the skill category cards with slide-in and pop effects
+      skillAnimElements.forEach((element) => {
+        element.classList.add('animate');
       });
-    }, {
-      threshold: [0, 0.25, 0.5, 0.75, 1], // Multiple thresholds for smoother updates
-      rootMargin: '-10px 0px -10px 0px' // Small margin to start/stop animations just before elements enter/exit viewport
-    });
-    
-    elements.forEach(el => {
-      observer.observe(el);
-    });
-  };
-  
-  // Calculate scroll progress (0 to 1) of an element through the viewport
-  const calculateScrollProgress = (entry) => {
-    // Get the distance from the top of the element to the top of the viewport
-    const elementTop = entry.boundingClientRect.top;
-    const elementHeight = entry.boundingClientRect.height;
-    const windowHeight = window.innerHeight;
-    
-    // Calculate how far the element has scrolled through the viewport
-    // 0 = just entered, 1 = just exited
-    let progress = 1 - (elementTop + elementHeight) / (windowHeight + elementHeight);
-    
-    // Clamp between 0 and 1
-    return Math.min(Math.max(progress, 0), 1);
-  };
-  
-  // Apply animations based on scroll progress
-  const applyScrollAnimations = (element, progress) => {
-    // For skill bars, set the width based on scroll progress
-    if (element.classList.contains('skill-bar')) {
-      const targetWidth = element.getAttribute('data-width');
-      const currentWidth = Math.floor(targetWidth * progress);
-      element.style.width = `${currentWidth}%`;
-    }
-    
-    // For slide animations, use transforms based on scroll progress
-    if (element.classList.contains('slide-left')) {
-      const startPosition = 100; // Start 100px to the right
-      const currentPosition = startPosition * (1 - progress);
-      element.style.transform = `translateX(${currentPosition}px)`;
-      element.style.opacity = progress;
-    }
-    
-    if (element.classList.contains('slide-right')) {
-      const startPosition = -100; // Start 100px to the left
-      const currentPosition = startPosition * (1 - progress);
-      element.style.transform = `translateX(${currentPosition}px)`;
-      element.style.opacity = progress;
-    }
-    
-    if (element.classList.contains('slide-up')) {
-      const startPosition = 50; // Start 50px below
-      const currentPosition = startPosition * (1 - progress);
-      element.style.transform = `translateY(${currentPosition}px)`;
-      element.style.opacity = progress;
-    }
-    
-    // For scale animations
-    if (element.classList.contains('scale-in')) {
-      const startScale = 0.8;
-      const currentScale = startScale + (1 - startScale) * progress;
-      element.style.transform = `scale(${currentScale})`;
-      element.style.opacity = progress;
-    }
-  };
-  
-  // Initialize scroll-driven animations
-  animateOnScroll();
-  
-  // Also initialize standard animations for older browsers
-  function checkScrollReveal() {
-    const triggerBottom = window.innerHeight * 0.85;
-    
-    const fadeElements = document.querySelectorAll('.fade-in');
-    fadeElements.forEach(element => {
-      const elementTop = element.getBoundingClientRect().top;
       
-      if (elementTop < triggerBottom) {
-        element.classList.add('appear');
-      } else {
-        element.classList.remove('appear');
-      }
-    });
+      // Animate all skill bars with a delay
+      setTimeout(() => {
+        skillItems.forEach((item, index) => {
+          setTimeout(() => {
+            // Add animation class
+            item.classList.add('animate');
+            
+            // Animate the skill bar width
+            const skillBar = item.querySelector('.skill-bar');
+            if (skillBar) {
+              const targetWidth = skillBar.getAttribute('data-width') + '%';
+              skillBar.style.width = targetWidth;
+            }
+          }, 200 * index);
+        });
+      }, 500); // Start after category animations
+      
+      skillsAnimated = true;
+      // Keep listening for scroll to trigger other animations
+    }
+  }
+  
+  // Add scroll event listener for skill animations
+  if (skillAnimElements.length > 0 || skillItems.length > 0) {
+    window.addEventListener('scroll', animateSkillsSection);
+    // Check on page load as well
+    setTimeout(animateSkillsSection, 500);
   }
 
   // ===== Update current year =====
