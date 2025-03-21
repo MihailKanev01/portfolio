@@ -446,10 +446,15 @@
       crossorigin="anonymous"
     ></script>
     <!-- EmailJS Integration -->
-    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+    <script
+  type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
     <script>
       (function() {
-        emailjs.init("OfeVQ08GZq8WkNqIj"); // Replace with your actual User ID
+        emailjs.init({
+  publicKey: 'OfeVQ08GZq8WkNqIj',
+}); // Replace with your actual User ID
       })();
     </script>
     
