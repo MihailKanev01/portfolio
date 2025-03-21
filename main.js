@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Check for scroll reveal on scroll
   window.addEventListener('scroll', checkScrollReveal);
 
-  // ===== Contact Form =====
+  // ===== Contact Form with EmailJS =====
   const form = document.getElementById('contact-form');
   if (form) {
     const messageTextarea = document.getElementById('message');
@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
 
-    // Form validation
+    // Form validation and EmailJS submission
     form.addEventListener('submit', function(event) {
       // Prevent default form submission
       event.preventDefault();
@@ -250,49 +250,55 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         
         // Prepare form data for submission
-        const formData = {
-          name: nameInput.value,
-          email: emailInput.value,
+        const templateParams = {
+          from_name: nameInput.value,
+          reply_to: emailInput.value,
           message: messageInput.value
         };
         
-        // OPTION 1: Use Email.js service (requires setup)
-        // emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData, 'YOUR_USER_ID')
-        
-        // OPTION 2: Submit to a serverless function or API endpoint
-        // fetch('https://api.yourwebsite.com/contact', {
-        //   method: 'POST',
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //   },
-        //   body: JSON.stringify(formData),
-        // })
-        
-        // For demo purposes, simulate a successful submission after delay
-        setTimeout(() => {
-          // Display success message
-          formStatusContainer.innerHTML = `
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-              <i class="fas fa-check-circle me-2"></i>
-              Thank you for your message! I'll get back to you soon.
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-          `;
-          
-          // Reset form
-          form.reset();
-          nameInput.classList.remove('is-valid');
-          emailInput.classList.remove('is-valid');
-          messageInput.classList.remove('is-valid');
-          messageCount.textContent = '0 / 500';
-          
-          // Reset button
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = `
-            <i class="fas fa-paper-plane me-2"></i> 
-            <span>Send Message</span>
-          `;
-        }, 2000);
+        // Send email using EmailJS
+        emailjs.send(
+          'OfeVQ08GZq8WkNqIj',   // Replace with your actual Service ID from EmailJS
+          'template_pxnfski',  // Replace with your actual Template ID from EmailJS
+          templateParams
+        )
+          .then(function() {
+            // Display success message
+            formStatusContainer.innerHTML = `
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="fas fa-check-circle me-2"></i>
+                Thank you for your message! I'll get back to you soon.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            `;
+            
+            // Reset form
+            form.reset();
+            nameInput.classList.remove('is-valid');
+            emailInput.classList.remove('is-valid');
+            messageInput.classList.remove('is-valid');
+            messageCount.textContent = '0 / 500';
+          })
+          .catch(function(error) {
+            console.log('Failed:', error);
+            
+            // Show error message
+            formStatusContainer.innerHTML = `
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="fas fa-exclamation-circle me-2"></i>
+                Something went wrong. Please try again later.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            `;
+          })
+          .finally(function() {
+            // Reset button
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = `
+              <i class="fas fa-paper-plane me-2"></i> 
+              <span>Send Message</span>
+            `;
+          });
       } else {
         // Show error message
         formStatusContainer.innerHTML = `
