@@ -286,8 +286,8 @@ form.addEventListener('submit', function(event) {
     
     // Send email using EmailJS
     emailjs.send(
-      'YOUR_SERVICE_ID',   // Replace with your actual Service ID from EmailJS
-      'YOUR_TEMPLATE_ID',  // Replace with your actual Template ID from EmailJS
+      'service_za0kkku',   // Replace with your actual Service ID from EmailJS
+      'template_pxnfski',  // Replace with your actual Template ID from EmailJS
       templateParams
     )
       .then(function(response) {
