@@ -255,9 +255,9 @@ form.addEventListener('submit', function(event) {
     
     // Prepare form data for submission
     const templateParams = {
-      from_name: nameInput.value,
-      reply_to: emailInput.value,
-      message: messageInput.value
+      from_name: nameInput.value.trim(),  // Ensure there's no whitespace
+      reply_to: emailInput.value.trim(),  // Ensure there's no whitespace
+      message: messageInput.value.trim()  // Ensure there's no whitespace
     };
     
     // Log information for debugging
