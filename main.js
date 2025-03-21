@@ -211,105 +211,134 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Form validation and EmailJS submission
-    form.addEventListener('submit', function(event) {
-      // Prevent default form submission
-      event.preventDefault();
+    // EmailJS Debugging Code
+// Replace this in your Form submission section
+
+// Form validation and EmailJS submission
+form.addEventListener('submit', function(event) {
+  // Prevent default form submission
+  event.preventDefault();
+  
+  // Reset form status
+  formStatusContainer.innerHTML = '';
+  
+  // Validate each field
+  let isFormValid = true;
+  
+  // Name validation
+  const nameInput = document.getElementById('name');
+  const namePattern = /^[A-Za-z\s]{2,50}$/;
+  const isNameValid = namePattern.test(nameInput.value);
+  showValidationMessage(nameInput, isNameValid, isNameValid ? 'Looks good!' : 'Please enter a valid name (2-50 characters, letters only)');
+  isFormValid = isFormValid && isNameValid;
+  
+  // Email validation
+  const emailInput = document.getElementById('email');
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const isEmailValid = emailPattern.test(emailInput.value);
+  showValidationMessage(emailInput, isEmailValid, isEmailValid ? 'Looks good!' : 'Please enter a valid email address');
+  isFormValid = isFormValid && isEmailValid;
+  
+  // Message validation
+  const messageInput = document.getElementById('message');
+  const isMessageValid = messageInput.value.length >= 10 && messageInput.value.length <= 500;
+  showValidationMessage(messageInput, isMessageValid, isMessageValid ? 'Looks good!' : 'Please enter a message (10-500 characters)');
+  isFormValid = isFormValid && isMessageValid;
+  
+  if (isFormValid) {
+    // Disable submit button and show loading state
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = `
+      <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+      Sending...
+    `;
+    
+    // Prepare form data for submission
+    const templateParams = {
+      from_name: nameInput.value,
+      reply_to: emailInput.value,
+      message: messageInput.value
+    };
+    
+    // Log information for debugging
+    console.log('Attempting to send email with EmailJS');
+    console.log('Template params:', templateParams);
+    
+    // First check if emailjs is properly loaded
+    if (typeof emailjs === 'undefined') {
+      console.error('EmailJS is not loaded! Check your script inclusion.');
+      formStatusContainer.innerHTML = `
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <i class="fas fa-exclamation-circle me-2"></i>
+          EmailJS is not properly loaded. Please refresh the page and try again.
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      `;
       
-      // Reset form status
-      formStatusContainer.innerHTML = '';
-      
-      // Validate each field
-      let isFormValid = true;
-      
-      // Name validation
-      const nameInput = document.getElementById('name');
-      const namePattern = /^[A-Za-z\s]{2,50}$/;
-      const isNameValid = namePattern.test(nameInput.value);
-      showValidationMessage(nameInput, isNameValid, isNameValid ? 'Looks good!' : 'Please enter a valid name (2-50 characters, letters only)');
-      isFormValid = isFormValid && isNameValid;
-      
-      // Email validation
-      const emailInput = document.getElementById('email');
-      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-      const isEmailValid = emailPattern.test(emailInput.value);
-      showValidationMessage(emailInput, isEmailValid, isEmailValid ? 'Looks good!' : 'Please enter a valid email address');
-      isFormValid = isFormValid && isEmailValid;
-      
-      // Message validation
-      const messageInput = document.getElementById('message');
-      const isMessageValid = messageInput.value.length >= 10 && messageInput.value.length <= 500;
-      showValidationMessage(messageInput, isMessageValid, isMessageValid ? 'Looks good!' : 'Please enter a message (10-500 characters)');
-      isFormValid = isFormValid && isMessageValid;
-      
-      if (isFormValid) {
-        // Disable submit button and show loading state
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = `
-          <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-          Sending...
-        `;
-        
-        // Prepare form data for submission
-        const templateParams = {
-          from_name: nameInput.value,
-          reply_to: emailInput.value,
-          message: messageInput.value
-        };
-        
-        // Send email using EmailJS
-        emailjs.send(
-          'service_za0kkku',   // Replace with your actual Service ID from EmailJS
-          'template_pxnfski',  // Replace with your actual Template ID from EmailJS
-          templateParams
-        )
-          .then(function() {
-            // Display success message
-            formStatusContainer.innerHTML = `
-              <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <i class="fas fa-check-circle me-2"></i>
-                Thank you for your message! I'll get back to you soon.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div>
-            `;
-            
-            // Reset form
-            form.reset();
-            nameInput.classList.remove('is-valid');
-            emailInput.classList.remove('is-valid');
-            messageInput.classList.remove('is-valid');
-            messageCount.textContent = '0 / 500';
-          })
-          .catch(function(error) {
-            console.log('Failed:', error);
-            
-            // Show error message
-            formStatusContainer.innerHTML = `
-              <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <i class="fas fa-exclamation-circle me-2"></i>
-                Something went wrong. Please try again later.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div>
-            `;
-          })
-          .finally(function() {
-            // Reset button
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = `
-              <i class="fas fa-paper-plane me-2"></i> 
-              <span>Send Message</span>
-            `;
-          });
-      } else {
-        // Show error message
+      // Reset button
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = `
+        <i class="fas fa-paper-plane me-2"></i> 
+        <span>Send Message</span>
+      `;
+      return;
+    }
+    
+    // Send email using EmailJS
+    emailjs.send(
+      'YOUR_SERVICE_ID',   // Replace with your actual Service ID from EmailJS
+      'YOUR_TEMPLATE_ID',  // Replace with your actual Template ID from EmailJS
+      templateParams
+    )
+      .then(function(response) {
+        console.log('SUCCESS!', response);
+        // Display success message
         formStatusContainer.innerHTML = `
-          <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <i class="fas fa-exclamation-circle me-2"></i>
-            Please correct the errors in the form before submitting.
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check-circle me-2"></i>
+            Thank you for your message! I'll get back to you soon.
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
         `;
-      }
-    });
+        
+        // Reset form
+        form.reset();
+        nameInput.classList.remove('is-valid');
+        emailInput.classList.remove('is-valid');
+        messageInput.classList.remove('is-valid');
+        messageCount.textContent = '0 / 500';
+      })
+      .catch(function(error) {
+        console.error('FAILED...', error);
+        
+        // Show detailed error message for debugging
+        formStatusContainer.innerHTML = `
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-exclamation-circle me-2"></i>
+            Error: ${error.text || 'Unknown error'}. Status: ${error.status || 'N/A'}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        `;
+      })
+      .finally(function() {
+        // Reset button
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = `
+          <i class="fas fa-paper-plane me-2"></i> 
+          <span>Send Message</span>
+        `;
+      });
+  } else {
+    // Show error message
+    formStatusContainer.innerHTML = `
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="fas fa-exclamation-circle me-2"></i>
+        Please correct the errors in the form before submitting.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    `;
+  }
+});
     
     // Real-time validation
     const inputs = form.querySelectorAll('input, textarea');
