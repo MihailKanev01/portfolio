@@ -258,7 +258,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Send email using EmailJS
         emailjs.send(
-          'OfeVQ08GZq8WkNqIj',   // Replace with your actual Service ID from EmailJS
+          'service_za0kkku',   // Replace with your actual Service ID from EmailJS
           'template_pxnfski',  // Replace with your actual Template ID from EmailJS
           templateParams
         )
