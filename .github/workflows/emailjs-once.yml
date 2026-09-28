@@ -1,0 +1,31 @@
+name: EmailJS one-time integration test
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  emailjs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send one EmailJS test message
+        env:
+          EMAILJS_SERVICE_ID: service_za0kkku
+          EMAILJS_TEMPLATE_ID: template_drq3v2w
+          EMAILJS_PUBLIC_KEY: OfeVQ08GZq8WkNqIj
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error             --request POST             --url https://api.emailjs.com/api/v1.0/email/send             --header 'Content-Type: application/json'             --data @- <<JSON
+          {
+            "service_id": "${EMAILJS_SERVICE_ID}",
+            "template_id": "${EMAILJS_TEMPLATE_ID}",
+            "user_id": "${EMAILJS_PUBLIC_KEY}",
+            "template_params": {
+              "name": "Mihail Portfolio Test",
+              "email": "test@example.com",
+              "from_name": "Mihail Portfolio Test",
+              "reply_to": "test@example.com",
+              "message": "Real EmailJS integration test from the Mihail Kanev portfolio contact form."
+            }
+          }
+          JSON
