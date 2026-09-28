@@ -8,24 +8,31 @@ document.addEventListener('DOMContentLoaded', function() {
   // ===== Preloader =====
   const preloader = document.getElementById('preloader');
   
-  window.addEventListener('load', function() {
-    setTimeout(function() {
-      preloader.style.opacity = '0';
-      preloader.style.visibility = 'hidden';
-      
-      checkScrollReveal();
-    }, 800);
-  });
+  if (preloader) {
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        preloader.style.opacity = '0';
+        preloader.style.visibility = 'hidden';
+        
+        checkScrollReveal();
+      }, 800);
+    });
+  } else {
+    checkScrollReveal();
+  }
   
   // ===== Theme Toggle =====
   const savedTheme = localStorage.getItem('theme') || 'dark';
   document.documentElement.setAttribute('data-theme', savedTheme);
 
   
-  console.log('Applied theme:', savedTheme);
+
   
   const themeToggle = document.getElementById('theme-toggle');
   if (themeToggle) {
+    themeToggle.setAttribute('aria-pressed', savedTheme === 'light' ? 'true' : 'false');
+    themeToggle.setAttribute('aria-label', savedTheme === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
+
     themeToggle.addEventListener('click', function(event) {
       const currentTheme = document.documentElement.getAttribute('data-theme');
       const themeTransition = document.querySelector('.theme-transition');
@@ -39,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('theme', newTheme);
         document.documentElement.setAttribute('data-theme', newTheme);
         
-        console.log('Theme changed to:', newTheme);
+
         
         setTimeout(function() {
           if (themeTransition) {
@@ -105,16 +112,29 @@ document.addEventListener('DOMContentLoaded', function() {
       if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
         navLinks.forEach(link => {
           link.classList.remove('active-link');
+          link.removeAttribute('aria-current');
         });
         
         const currentLink = document.querySelector(`a[href="#${sectionId}"]`);
         if (currentLink) {
           currentLink.classList.add('active-link');
+          currentLink.setAttribute('aria-current', 'page');
         }
       }
     });
   });
   
+  // Close mobile navigation with Escape.
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      const navbarCollapse = document.querySelector('.navbar-collapse.show');
+      if (navbarCollapse) {
+        const navbarToggler = document.querySelector('.navbar-toggler');
+        navbarToggler?.click();
+      }
+    }
+  });
+
   // ===== Scroll Reveal Animations =====
   const sections = document.querySelectorAll('section');
   sections.forEach(section => {
@@ -218,11 +238,8 @@ form.addEventListener('submit', function(event) {
       message: messageInput.value.trim()  
     };
     
-    console.log('Attempting to send email with EmailJS');
-    console.log('Template params:', templateParams);
-    
     if (typeof emailjs === 'undefined') {
-      console.error('EmailJS is not loaded! Check your script inclusion.');
+
       formStatusContainer.innerHTML = `
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
           <i class="fas fa-exclamation-circle me-2"></i>
@@ -245,7 +262,7 @@ form.addEventListener('submit', function(event) {
       templateParams
     )
       .then(function(response) {
-        console.log('SUCCESS!', response);
+
         formStatusContainer.innerHTML = `
           <div class="alert alert-success alert-dismissible fade show" role="alert">
             <i class="fas fa-check-circle me-2"></i>
@@ -261,7 +278,7 @@ form.addEventListener('submit', function(event) {
         messageCount.textContent = '0 / 500';
       })
       .catch(function(error) {
-        console.error('FAILED...', error);
+
         
         formStatusContainer.innerHTML = `
           <div class="alert alert-danger alert-dismissible fade show" role="alert">
