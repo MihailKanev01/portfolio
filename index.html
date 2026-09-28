@@ -35,11 +35,16 @@
 
     <!-- Header -->
     <header>
-      <nav class="navbar navbar-expand-md fixed-top glass-nav">
+      <nav class="navbar navbar-expand-md fixed-top modern-nav">
         <div class="container">
-          <a class="navbar-brand fw-bold" href="./">
-            Mihail
+          <a class="navbar-brand brand-lockup" href="#home" aria-label="Mihail Kanev - Home">
+            <span class="brand-mark">M</span>
+            <span class="brand-copy">
+              <strong>Mihail Kanev</strong>
+              <small>Software Developer</small>
+            </span>
           </a>
+
           <button
             class="navbar-toggler custom-toggler"
             type="button"
@@ -51,35 +56,39 @@
           >
             <i class="fas fa-bars"></i>
           </button>
+
           <div class="collapse navbar-collapse" id="collapsibleNavId">
-            <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+            <ul class="navbar-nav ms-auto align-items-md-center">
               <li class="nav-item">
-                <a class="nav-link" href="#home">
-                  <i class="fas fa-home me-1"></i> Home
-                </a>
+                <a class="nav-link" href="#home">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#about">
-                  <i class="fas fa-user me-1"></i> About
-                </a>
+                <a class="nav-link" href="#about">About</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#skills">
-                  <i class="fas fa-code me-1"></i> Skills
-                </a>
+                <a class="nav-link" href="#skills">Skills</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#projects">
-                  <i class="fas fa-folder-open me-1"></i> Projects
-                </a>
+                <a class="nav-link" href="#projects">Projects</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#contact">
-                  <i class="fas fa-envelope me-1"></i> Contact
+                <a class="nav-link" href="#contact">Contact</a>
+              </li>
+
+              <li class="nav-item nav-github-item">
+                <a
+                  class="nav-github-link"
+                  href="https://github.com/MihailKanev01"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Open Mihail Kanev's GitHub profile"
+                  title="GitHub"
+                >
+                  <i class="fab fa-github" aria-hidden="true"></i>
                 </a>
               </li>
-              <!-- Theme Toggle Button -->
-              <li class="nav-item d-flex align-items-center ms-2">
+
+              <li class="nav-item theme-nav-item">
                 <button id="theme-toggle" class="theme-toggle" title="Switch theme" aria-label="Switch theme">
                   <div class="theme-toggle-track">
                     <div class="theme-toggle-thumb">
@@ -97,16 +106,79 @@
 
     <main>
       <!-- Hero Section -->
-      <section id="home" class="hero-section text-center">
+      <section id="home" class="hero-section">
         <div class="container">
-          <div class="hero-badge mb-4"><span>SOFTWARE DEVELOPER</span></div>
-          <h1 class="display-3 fw-bold mb-4 gradient-text">
-            Mihail Kanev
-          </h1>
-          <p class="lead mb-4">C# • .NET • Java • SQL • Unity</p>
-          <p class="mb-5">I build practical software, backend systems and interactive applications — from databases and APIs to complete Unity games.</p>
-          <a href="#projects" class="btn btn-primary btn-lg me-2">View My Work</a>
-          <a href="#contact" class="btn btn-outline-light btn-lg">Contact Me</a>
+          <div class="row align-items-center g-5">
+            <div class="col-lg-7">
+              <div class="hero-badge mb-4">
+                <span class="hero-badge-dot"></span>
+                SOFTWARE DEVELOPER
+              </div>
+
+              <h1 class="hero-title mb-4">
+                I build software<br />
+                <span class="gradient-text">that solves problems.</span>
+              </h1>
+
+              <p class="hero-subtitle mb-4">
+                C# / .NET / Java / SQL / Unity
+              </p>
+
+              <p class="hero-description mb-5">
+                I build practical applications, backend systems and interactive experiences —
+                from database-driven software to complete Unity projects.
+              </p>
+
+              <div class="hero-actions">
+                <a href="#projects" class="btn btn-primary btn-lg">View Projects</a>
+                <a
+                  href="https://github.com/MihailKanev01"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn btn-outline-light btn-lg"
+                >
+                  <i class="fab fa-github me-2" aria-hidden="true"></i>
+                  GitHub
+                </a>
+              </div>
+            </div>
+
+            <div class="col-lg-5">
+              <div class="hero-code-window">
+                <div class="hero-code-header">
+                  <div class="hero-code-dots" aria-hidden="true">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <span class="hero-code-title">mihail@portfolio ~</span>
+                  <span class="hero-code-status">
+                    <span class="hero-code-status-dot"></span>
+                    ready
+                  </span>
+                </div>
+
+                <div class="hero-code-body">
+                  <div><span class="code-muted">$</span> whoami</div>
+                  <div class="code-output">Mihail Kanev</div>
+
+                  <div class="hero-code-spacer"></div>
+
+                  <div><span class="code-muted">$</span> stack --list</div>
+                  <div class="code-line"><span class="code-key">C#</span><span>/.NET</span></div>
+                  <div class="code-line"><span class="code-key">Java</span><span>/Spring</span></div>
+                  <div class="code-line"><span class="code-key">SQL</span><span>/PostgreSQL</span></div>
+                  <div class="code-line"><span class="code-key">Unity</span><span>/Game Development</span></div>
+
+                  <div class="hero-code-spacer"></div>
+
+                  <div><span class="code-muted">$</span> projects --featured</div>
+                  <div class="code-output">Fuel Tracker Bulgaria</div>
+                  <div class="code-output">NarutoGame</div>
+                  <div class="code-output">The Flash UE</div>
+                  <div class="code-cursor" aria-hidden="true">_</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
