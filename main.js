@@ -45,8 +45,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
         localStorage.setItem('theme', newTheme);
         document.documentElement.setAttribute('data-theme', newTheme);
-        
-
+        themeToggle.setAttribute('aria-pressed', newTheme === 'light' ? 'true' : 'false');
+        themeToggle.setAttribute('aria-label', newTheme === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
+        themeToggle.setAttribute('title', newTheme === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
         
         setTimeout(function() {
           if (themeTransition) {
@@ -339,8 +340,12 @@ form.addEventListener('submit', function(event) {
 
   filterButtons.forEach(button => {
     button.addEventListener('click', function() {
-      filterButtons.forEach(btn => btn.classList.remove('active'));
+      filterButtons.forEach(btn => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
+      });
       this.classList.add('active');
+      this.setAttribute('aria-pressed', 'true');
 
       const filterValue = this.dataset.filter;
 
