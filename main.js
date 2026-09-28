@@ -339,47 +339,6 @@ form.addEventListener('submit', function(event) {
     });
   });
 
-  // ===== Skill Section Animations =====
-  const skillItems = document.querySelectorAll('.skill-item');
-  const skillAnimElements = document.querySelectorAll('.skill-anim-left, .skill-anim-right, .skill-anim-pop');
-  let skillsAnimated = false;
-  
-  function animateSkillsSection() {
-    if (skillsAnimated) return;
-    
-    const skillsSection = document.getElementById('skills');
-    if (!skillsSection) return;
-    
-    const triggerPosition = window.scrollY + window.innerHeight * 0.75;
-    const sectionPosition = skillsSection.getBoundingClientRect().top + window.scrollY;
-    
-    if (triggerPosition > sectionPosition) {
-      skillAnimElements.forEach((element) => {
-        element.classList.add('animate');
-      });
-      
-      setTimeout(() => {
-        skillItems.forEach((item, index) => {
-          setTimeout(() => {
-            item.classList.add('animate');
-            
-            const skillBar = item.querySelector('.skill-bar');
-            if (skillBar) {
-              const targetWidth = skillBar.getAttribute('data-width') + '%';
-              skillBar.style.width = targetWidth;
-            }
-          }, 200 * index);
-        });
-      }, 500); 
-      
-      skillsAnimated = true;
-    }
-  }
-  
-  if (skillAnimElements.length > 0 || skillItems.length > 0) {
-    window.addEventListener('scroll', animateSkillsSection);
-    setTimeout(animateSkillsSection, 500);
-  }
 
   // ===== Update current year =====
   const currentYearElement = document.getElementById('current-year');
