@@ -173,6 +173,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const formStatusContainer = document.createElement('div');
     formStatusContainer.className = 'form-status-container mt-3';
     formStatusContainer.setAttribute('aria-live', 'polite');
+    formStatusContainer.setAttribute('aria-atomic', 'true');
     form.appendChild(formStatusContainer);
 
     if (messageTextarea && messageCount) {
@@ -189,45 +190,149 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function showValidationMessage(input, isValid, message) {
-      const feedbackDiv = input.closest('.contact-field')?.querySelector('.invalid-feedback') ||
-        input.closest('.contact-field')?.querySelector('.valid-feedback');
+      const field = input.closest('.contact-field');
+      if (!field) return;
+      
+      const feedbackDiv = field.querySelector('.invalid-feedback');
+      let statusIcon = field.querySelector('.validation-status-icon');
+      
+      if (!statusIcon) {
+        statusIcon = document.createElement('i');
+        statusIcon.className = 'fas validation-status-icon';
+        statusIcon.setAttribute('aria-hidden', 'true');
+        field.querySelector('.contact-input-wrap')?.appendChild(statusIcon);
+      }
       
       if (feedbackDiv) {
-        feedbackDiv.textContent = message;
+        feedbackDiv.innerHTML = isValid
+          ? `<i class="fas fa-check-circle me-1" aria-hidden="true"></i>${message}`
+          : `<i class="fas fa-circle-exclamation me-1" aria-hidden="true"></i>${message}`;
+        feedbackDiv.classList.toggle('validation-success', isValid);
+        feedbackDiv.classList.toggle('validation-error', !isValid);
       }
+      
+      input.setAttribute('aria-invalid', isValid ? 'false' : 'true');
       
       if (isValid) {
         input.classList.remove('is-invalid');
         input.classList.add('is-valid');
+        statusIcon.className = 'fas fa-check-circle validation-status-icon validation-status-success';
       } else {
         input.classList.remove('is-valid');
         input.classList.add('is-invalid');
+        statusIcon.className = 'fas fa-circle-exclamation validation-status-icon validation-status-error';
       }
     }
-form.addEventListener('submit', function(event) {
-  event.preventDefault();
-  
-  formStatusContainer.innerHTML = '';
-  
-  let isFormValid = true;
-  const nameInput = document.getElementById('name');
-  const namePattern = /^[\p{L}][\p{L}\s'’-]{1,49}$/u;
-  const isNameValid = namePattern.test(nameInput.value.trim());
-  showValidationMessage(nameInput, isNameValid, isNameValid ? 'Looks good!' : 'Please enter a valid name (2-50 characters).');
-  isFormValid = isFormValid && isNameValid;
-  
-  const emailInput = document.getElementById('email');
-  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  const isEmailValid = emailPattern.test(emailInput.value);
-  showValidationMessage(emailInput, isEmailValid, isEmailValid ? 'Looks good!' : 'Please enter a valid email address');
-  isFormValid = isFormValid && isEmailValid;
-  
-  const messageInput = document.getElementById('message');
-  const isMessageValid = messageInput.value.length >= 10 && messageInput.value.length <= 500;
-  showValidationMessage(messageInput, isMessageValid, isMessageValid ? 'Looks good!' : 'Please enter a message (10-500 characters)');
-  isFormValid = isFormValid && isMessageValid;
-  
-  if (isFormValid) {
+
+    function clearValidationState(input) {
+      const field = input.closest('.contact-field');
+      if (!field) return;
+      
+      input.classList.remove('is-valid', 'is-invalid');
+      input.setAttribute('aria-invalid', 'false');
+      
+      const feedbackDiv = field.querySelector('.invalid-feedback');
+      if (feedbackDiv) {
+        feedbackDiv.innerHTML = '';
+        feedbackDiv.classList.remove('validation-success', 'validation-error');
+      }
+      
+      const statusIcon = field.querySelector('.validation-status-icon');
+      if (statusIcon) {
+        statusIcon.className = 'fas validation-status-icon';
+      }
+    }
+
+    function setValidationDescription(input, isValid, message) {
+      const field = input.closest('.contact-field');
+      const feedbackDiv = field?.querySelector('.invalid-feedback');
+      if (!feedbackDiv) return;
+      
+      if (!feedbackDiv.id) {
+        feedbackDiv.id = `${input.id}-validation-message`;
+      }
+      input.setAttribute('aria-describedby', feedbackDiv.id);
+      showValidationMessage(input, isValid, message);
+    }
+
+    function validateContactForm() {
+      const errors = [];
+      const nameInput = document.getElementById('name');
+      const emailInput = document.getElementById('email');
+      const messageInput = document.getElementById('message');
+
+      const namePattern = /^[\p{L}][\p{L}\s'’-]{1,49}$/u;
+      const isNameValid = namePattern.test(nameInput.value.trim());
+      const nameMessage = isNameValid
+        ? 'Looks good!'
+        : (nameInput.value.trim()
+          ? 'Please use 2–50 letters, spaces, apostrophes or hyphens.'
+          : 'Please enter your name.');
+      setValidationDescription(nameInput, isNameValid, nameMessage);
+      if (!isNameValid) errors.push({ field: nameInput, label: 'Name', message: nameMessage });
+
+      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      const isEmailValid = emailPattern.test(emailInput.value.trim());
+      const emailMessage = isEmailValid
+        ? 'Looks good!'
+        : (emailInput.value.trim()
+          ? 'Please enter a valid email address, for example name@example.com.'
+          : 'Please enter your email address.');
+      setValidationDescription(emailInput, isEmailValid, emailMessage);
+      if (!isEmailValid) errors.push({ field: emailInput, label: 'Email', message: emailMessage });
+
+      const messageLength = messageInput.value.trim().length;
+      const isMessageValid = messageLength >= 10 && messageLength <= 500;
+      const messageMessage = isMessageValid
+        ? 'Looks good!'
+        : (messageLength === 0
+          ? 'Please enter a message.'
+          : messageLength < 10
+            ? `Your message is too short. Add ${10 - messageLength} more character${10 - messageLength === 1 ? '' : 's'}.`
+            : 'Your message is too long. Keep it under 500 characters.');
+      setValidationDescription(messageInput, isMessageValid, messageMessage);
+      if (!isMessageValid) errors.push({ field: messageInput, label: 'Message', message: messageMessage });
+
+      return errors;
+    }
+
+    function showFormErrors(errors) {
+      const errorItems = errors
+        .map(error => `<li><strong>${error.label}:</strong> ${error.message}</li>`)
+        .join('');
+
+      formStatusContainer.innerHTML = `
+        <div class="form-error-summary alert alert-danger" role="alert" tabindex="-1">
+          <div class="form-error-summary-title">
+            <i class="fas fa-circle-info" aria-hidden="true"></i>
+            <span>Please check the highlighted fields.</span>
+          </div>
+          <ul class="form-error-summary-list">${errorItems}</ul>
+        </div>
+      `;
+      
+      formStatusContainer.querySelector('.form-error-summary')?.focus();
+      errors[0]?.field?.focus();
+      errors[0]?.field?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      formStatusContainer.innerHTML = '';
+      const errors = validateContactForm();
+      
+      if (errors.length > 0) {
+        showFormErrors(errors);
+        return;
+      }
+      
+      const nameInput = document.getElementById('name');
+      const emailInput = document.getElementById('email');
+      const messageInput = document.getElementById('message');
+      const isFormValid = true;
+      
+      if (isFormValid) {
     submitBtn.disabled = true;
     submitBtn.innerHTML = `
       <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
@@ -283,9 +388,10 @@ form.addEventListener('submit', function(event) {
         `;
         
         form.reset();
-        nameInput.classList.remove('is-valid');
-        emailInput.classList.remove('is-valid');
-        messageInput.classList.remove('is-valid');
+        inputs.forEach(input => {
+          input.dataset.touched = 'false';
+          clearValidationState(input);
+        });
         messageCount.textContent = '0 / 500';
       })
       .catch(function(error) {
@@ -318,27 +424,23 @@ form.addEventListener('submit', function(event) {
     
     const inputs = form.querySelectorAll('input, textarea');
     inputs.forEach(input => {
+      input.setAttribute('aria-invalid', 'false');
+      
       input.addEventListener('input', function() {
-        this.classList.remove('is-valid', 'is-invalid');
-        
         if (input.id === 'name') {
           input.value = input.value.replace(/[^\p{L}\s'’-]/gu, '');
+        }
+        
+        if (input.dataset.touched === 'true') {
+          validateContactForm();
+        } else {
+          clearValidationState(input);
         }
       });
       
       input.addEventListener('blur', function() {
-        if (input.id === 'name') {
-          const namePattern = /^[\p{L}][\p{L}\s'’-]{1,49}$/u;
-          const isValid = namePattern.test(input.value.trim());
-          showValidationMessage(input, isValid, isValid ? 'Looks good!' : 'Please enter a valid name (2-50 characters).');
-        } else if (input.id === 'email') {
-          const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-          const isValid = emailPattern.test(input.value);
-          showValidationMessage(input, isValid, isValid ? 'Looks good!' : 'Please enter a valid email address');
-        } else if (input.id === 'message') {
-          const isValid = input.value.length >= 10 && input.value.length <= 500;
-          showValidationMessage(input, isValid, isValid ? 'Looks good!' : 'Please enter a message (10-500 characters)');
-        }
+        input.dataset.touched = 'true';
+        validateContactForm();
       });
     });
   }
