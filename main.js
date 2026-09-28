@@ -317,33 +317,23 @@ form.addEventListener('submit', function(event) {
   }
 
   // ===== Project Filters =====
-  const filterButtons = document.querySelectorAll('#projects .btn-outline-light');
-  const projectCards = document.querySelectorAll('.project-card');
-  
+  const filterButtons = document.querySelectorAll('.project-filter');
+  const projectCards = document.querySelectorAll('#projects-grid .project-card');
+
   filterButtons.forEach(button => {
     button.addEventListener('click', function() {
       filterButtons.forEach(btn => btn.classList.remove('active'));
-      
       this.classList.add('active');
-      
-      const filterValue = this.textContent.trim().toLowerCase();
-      
+
+      const filterValue = this.dataset.filter;
+
       projectCards.forEach(card => {
-        const tags = card.querySelectorAll('.tag');
-        const tagTexts = Array.from(tags).map(tag => tag.textContent.toLowerCase());
-        
-        if (filterValue === 'all' || tagTexts.includes(filterValue)) {
-          card.style.display = 'block';
-          setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-          }, 10);
+        const shouldShow = filterValue === 'all' || card.dataset.category === filterValue;
+
+        if (shouldShow) {
+          card.classList.remove('is-hidden');
         } else {
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(20px)';
-          setTimeout(() => {
-            card.style.display = 'none';
-          }, 300);
+          card.classList.add('is-hidden');
         }
       });
     });
