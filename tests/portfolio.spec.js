@@ -1,8 +1,18 @@
 import { test, expect } from '@playwright/test';
 
-const BASE = 'http://127.0.0.1:4173';
+const BASE = process.env.BASE_URL || 'http://127.0.0.1:4173';
 
 test.describe('portfolio smoke tests', () => {
+  test('static public assets are present', async ({ page }) => {
+    for (const path of ['/', '/index.html', '/Style.css', '/main.js', '/favicon.svg', '/robots.txt']) {
+      const response = await page.request.get(BASE + path);
+      expect(response.ok(), path).toBeTruthy();
+    }
+
+    const removedTestPage = await page.request.get(BASE + '/test-emailjs.html');
+    expect(removedTestPage.status()).toBe(404);
+  });
+
   test('home page renders core sections and has no horizontal overflow', async ({ page }) => {
     await page.goto(BASE + '/index.html', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('h1.hero-title')).toContainText('I build software');
