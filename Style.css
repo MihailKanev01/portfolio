@@ -2861,3 +2861,120 @@ body {
     transition: none !important;
   }
 }
+
+
+/* =========================================================
+   CONTACT FORM — CLEAR VALIDATION FEEDBACK
+   ========================================================= */
+
+.contact-field .invalid-feedback {
+  min-height: 0;
+  display: none;
+  align-items: flex-start;
+  gap: 4px;
+  margin-top: 7px;
+  line-height: 1.5;
+  font-size: 0.70rem;
+  font-weight: 600;
+}
+
+.contact-field .invalid-feedback.validation-error {
+  display: flex;
+  color: #f87171;
+}
+
+.contact-field .invalid-feedback.validation-success {
+  display: flex;
+  color: #34d399;
+}
+
+.contact-input-wrap .validation-status-icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  z-index: 3;
+  display: none;
+  transform: translateY(-50%);
+  font-size: 0.82rem;
+  pointer-events: none;
+}
+
+.contact-input-wrap .validation-status-error {
+  display: block;
+  color: #f87171;
+}
+
+.contact-input-wrap .validation-status-success {
+  display: block;
+  color: #34d399;
+}
+
+.contact-input-wrap .form-control.is-invalid {
+  border-color: #ef4444;
+  padding-right: 42px !important;
+  box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.05);
+}
+
+.contact-input-wrap .form-control.is-valid {
+  border-color: #10b981;
+  padding-right: 42px !important;
+  box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.04);
+}
+
+.form-error-summary {
+  margin-bottom: 19px;
+  padding: 15px 16px 14px;
+  border: 1px solid rgba(239, 68, 68, 0.30);
+  border-left: 4px solid #ef4444;
+  border-radius: var(--radius-md);
+  background: rgba(239, 68, 68, 0.07);
+}
+
+.form-error-summary:focus {
+  outline: 2px solid rgba(239, 68, 68, 0.35);
+  outline-offset: 2px;
+}
+
+.form-error-summary-title {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #fca5a5;
+  font-size: 0.78rem;
+  font-weight: 750;
+}
+
+.form-error-summary-title i {
+  flex: 0 0 auto;
+  font-size: 0.85rem;
+}
+
+.form-error-summary-list {
+  margin: 9px 0 0 25px;
+  padding: 0;
+  color: var(--text-secondary);
+  font-size: 0.70rem;
+  line-height: 1.7;
+}
+
+.form-error-summary-list li + li {
+  margin-top: 3px;
+}
+
+.form-error-summary-list strong {
+  color: var(--text-primary);
+}
+
+@media (max-width: 575.98px) {
+  .form-error-summary {
+    padding: 14px;
+  }
+
+  .form-error-summary-list {
+    margin-left: 22px;
+  }
+
+  .contact-input-wrap .validation-status-icon {
+    right: 12px;
+  }
+}
