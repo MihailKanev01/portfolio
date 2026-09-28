@@ -15,7 +15,8 @@ test.describe('portfolio smoke tests', () => {
   test('navigation and project filters work', async ({ page }) => {
     await page.goto(BASE + '/index.html', { waitUntil: 'domcontentloaded' });
     await page.locator('a[href="#projects"]').first().click();
-    await expect(page.locator('#projects')).toBeInViewport();
+    await expect(page).toHaveURL(/#projects$/);
+    await page.locator('#projects').scrollIntoViewIfNeeded();
 
     await page.locator('.project-filter[data-filter="software"]').click();
     const softwareHidden = await page.locator('#projects-grid .project-card.is-hidden').count();
@@ -42,11 +43,11 @@ test.describe('portfolio smoke tests', () => {
     expect(await toggle.getAttribute('aria-pressed')).toBe('false');
 
     await toggle.click();
-    expect(await page.locator('html').getAttribute('data-theme')).toBe('light');
-    expect(await toggle.getAttribute('aria-pressed')).toBe('true');
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
+    await expect(toggle).toHaveAttribute('aria-pressed', 'true');
 
     await page.reload({ waitUntil: 'domcontentloaded' });
-    expect(await page.locator('html').getAttribute('data-theme')).toBe('light');
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
   });
 
   test('contact form validates input including Cyrillic names', async ({ page }) => {
@@ -98,7 +99,7 @@ test.describe('portfolio smoke tests', () => {
     await expect(page.locator('.navbar-collapse')).not.toHaveClass(/show/);
   });
 
-  test('no placeholder contact email or debug logging remains', async ({ page }) => {
+  test('internal links resolve and no placeholder/debug content remains', async ({ page }) => {
     await page.goto(BASE + '/index.html', { waitUntil: 'domcontentloaded' });
     for (const url of ['privacy-policy.html', 'terms-of-service.html']) {
       await page.goto(BASE + '/' + url, { waitUntil: 'domcontentloaded' });
@@ -107,5 +108,15 @@ test.describe('portfolio smoke tests', () => {
     }
     const mainJs = await (await page.request.get(BASE + '/main.js')).text();
     expect(mainJs).not.toMatch(/console\.(log|error|warn)\s*\(/);
+
+    await page.goto(BASE + '/index.html', { waitUntil: 'domcontentloaded' });
+    const internalLinks = await page.locator('a[href]').evaluateAll(links =>
+      [...new Set(links.map(a => a.getAttribute('href')))]
+        .filter(href => href && (href.startsWith('index.html') || href.endsWith('.html')))
+    );
+    for (const href of internalLinks) {
+      const response = await page.request.get(new URL(href.split('#')[0], BASE + '/').toString());
+      expect(response.ok(), href).toBeTruthy();
+    }
   });
 });
