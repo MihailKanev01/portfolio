@@ -2742,3 +2742,122 @@ html[data-theme="light"] .contact-link {
     font-size: 2.55rem;
   }
 }
+
+
+/* =========================================================
+   FINAL POLISH — ACCESSIBILITY + RESPONSIVE
+   ========================================================= */
+
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 10000;
+  padding: 9px 13px;
+  border-radius: 9px;
+  background: var(--card-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-180%);
+  transition: transform 0.2s ease;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+:focus-visible {
+  outline: 3px solid rgba(59, 130, 246, 0.45);
+  outline-offset: 3px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(59, 130, 246, 0.45);
+  outline-offset: 3px;
+}
+
+html {
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  min-width: 320px;
+}
+
+.modern-nav .navbar-toggler {
+  padding: 7px 10px;
+  border-radius: 9px;
+}
+
+.modern-nav .navbar-toggler:focus {
+  box-shadow: none;
+}
+
+@media (max-width: 575.98px) {
+  .container {
+    width: 100%;
+    padding-left: 17px;
+    padding-right: 17px;
+  }
+
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  .hero-code-body {
+    overflow-x: auto;
+  }
+
+  .hero-code-window {
+    border-radius: 14px;
+  }
+
+  .project-featured .project-visual {
+    min-height: 220px;
+  }
+
+  .fuel-ui {
+    width: 86%;
+    padding: 16px;
+  }
+
+  .contact-link {
+    grid-template-columns: 39px 1fr auto;
+  }
+
+  .contact-link-icon {
+    width: 39px;
+    height: 39px;
+  }
+}
+
+@media (min-width: 992px) {
+  .modern-nav .navbar-collapse {
+    display: flex !important;
+    justify-content: flex-end;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skip-link,
+  .btn,
+  .project-card,
+  .build-card,
+  .tech-group,
+  .contact-link,
+  .contact-submit i {
+    transition: none !important;
+  }
+}
