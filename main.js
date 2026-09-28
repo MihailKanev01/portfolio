@@ -172,6 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const submitBtn = document.getElementById('submit-btn');
     const formStatusContainer = document.createElement('div');
     formStatusContainer.className = 'form-status-container mt-3';
+    formStatusContainer.setAttribute('aria-live', 'polite');
     form.appendChild(formStatusContainer);
 
     if (messageTextarea && messageCount) {
@@ -289,11 +290,10 @@ form.addEventListener('submit', function(event) {
       })
       .catch(function(error) {
 
-        
         formStatusContainer.innerHTML = `
           <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <i class="fas fa-exclamation-circle me-2"></i>
-            Error: ${error.text || 'Unknown error'}. Status: ${error.status || 'N/A'}
+            The message could not be sent right now. Please try again later.
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
         `;
