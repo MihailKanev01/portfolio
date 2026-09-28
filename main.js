@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   const themeToggle = document.getElementById('theme-toggle');
   if (themeToggle) {
-    themeToggle.addEventListener('click', function() {
+    themeToggle.addEventListener('click', function(event) {
       const currentTheme = document.documentElement.getAttribute('data-theme');
       const themeTransition = document.querySelector('.theme-transition');
       
