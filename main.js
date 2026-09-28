@@ -189,9 +189,9 @@ form.addEventListener('submit', function(event) {
   
   let isFormValid = true;
   const nameInput = document.getElementById('name');
-  const namePattern = /^[A-Za-z\s]{2,50}$/;
-  const isNameValid = namePattern.test(nameInput.value);
-  showValidationMessage(nameInput, isNameValid, isNameValid ? 'Looks good!' : 'Please enter a valid name (2-50 characters, letters only)');
+  const namePattern = /^[\p{L}][\p{L}\s'’-]{1,49}$/u;
+  const isNameValid = namePattern.test(nameInput.value.trim());
+  showValidationMessage(nameInput, isNameValid, isNameValid ? 'Looks good!' : 'Please enter a valid name (2-50 characters).');
   isFormValid = isFormValid && isNameValid;
   
   const emailInput = document.getElementById('email');
@@ -295,15 +295,15 @@ form.addEventListener('submit', function(event) {
         this.classList.remove('is-valid', 'is-invalid');
         
         if (input.id === 'name') {
-          input.value = input.value.replace(/[^A-Za-z\s]/g, '');
+          input.value = input.value.replace(/[^\p{L}\s'’-]/gu, '');
         }
       });
       
       input.addEventListener('blur', function() {
         if (input.id === 'name') {
-          const namePattern = /^[A-Za-z\s]{2,50}$/;
-          const isValid = namePattern.test(input.value);
-          showValidationMessage(input, isValid, isValid ? 'Looks good!' : 'Please enter a valid name (2-50 characters, letters only)');
+          const namePattern = /^[\p{L}][\p{L}\s'’-]{1,49}$/u;
+          const isValid = namePattern.test(input.value.trim());
+          showValidationMessage(input, isValid, isValid ? 'Looks good!' : 'Please enter a valid name (2-50 characters).');
         } else if (input.id === 'email') {
           const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
           const isValid = emailPattern.test(input.value);
