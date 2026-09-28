@@ -2263,3 +2263,194 @@ html[data-theme="light"] .what-i-build-section {
     gap: 12px;
   }
 }
+
+
+/* =========================================================
+   STAGE 5 — TECH STACK
+   ========================================================= */
+
+.skills-section {
+  background: var(--color-primary-lighter);
+}
+
+html[data-theme="light"] .skills-section {
+  background: var(--color-primary-lighter);
+}
+
+.skills-heading-row {
+  align-items: end;
+}
+
+.skills-intro {
+  padding-bottom: 4px;
+}
+
+.skills-intro p {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+.tech-groups {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 38px;
+}
+
+.tech-group {
+  min-height: 300px;
+  padding: 26px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--card-bg);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.tech-group:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+}
+
+.tech-group-header {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.tech-group-icon {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-subtle);
+  border-radius: 11px;
+  background: rgba(59, 130, 246, 0.06);
+  color: var(--color-accent);
+}
+
+.tech-group-kicker {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+}
+
+.tech-group h3 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 1.05rem;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+}
+
+.tech-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+}
+
+.tech-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.tech-item:last-child {
+  border-bottom: 0;
+}
+
+.tech-item-name {
+  color: var(--text-primary);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.tech-item-context {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.tech-primary .tech-item-name {
+  color: var(--color-accent-lighter);
+}
+
+.tech-primary .tech-item-context {
+  color: var(--color-accent);
+}
+
+.skills-evidence {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-top: 22px;
+  padding: 20px 22px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: rgba(59, 130, 246, 0.035);
+}
+
+.skills-evidence-label {
+  flex: 0 0 auto;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+}
+
+.skills-evidence-projects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.skills-evidence-projects a {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 10px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  color: var(--text-secondary);
+  background: var(--card-bg);
+  font-size: 0.70rem;
+  font-weight: 600;
+}
+
+.skills-evidence-projects a:hover {
+  color: var(--color-accent-lighter);
+  border-color: rgba(59, 130, 246, 0.38);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 767.98px) {
+  .tech-groups {
+    grid-template-columns: 1fr;
+  }
+
+  .tech-group {
+    min-height: auto;
+  }
+
+  .skills-evidence {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 13px;
+  }
+}
