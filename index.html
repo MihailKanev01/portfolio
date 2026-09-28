@@ -583,97 +583,120 @@
       </section>
 
       <!-- Contact Section -->
-      <section id="contact" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="section-heading gradient-text">Get In Touch</h2>
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-4">
-                            <form id="contact-form" novalidate>
-                                <div class="mb-4 position-relative">
-                                    <label for="name" class="form-label">Name</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text bg-transparent border-0 position-absolute start-0 top-50 translate-middle-y ps-3 text-muted">
-                                            <i class="fas fa-user"></i>
-                                        </span>
-                                        <input
-                                            type="text"
-                                            class="form-control ps-5"
-                                            id="name"
-                                            name="name"
-                                            placeholder="Enter your full name"
-                                            required
-                                            minlength="2"
-                                            maxlength="50"
-                                            pattern="^[A-Za-z\s]+$"
-                                        />
-                                        <div class="invalid-feedback">
-                                            Please enter a valid name (2-50 characters, letters only).
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="mb-4 position-relative">
-                                    <label for="email" class="form-label">Email</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text bg-transparent border-0 position-absolute start-0 top-50 translate-middle-y ps-3 text-muted">
-                                            <i class="fas fa-envelope"></i>
-                                        </span>
-                                        <input
-                                            type="email"
-                                            class="form-control ps-5"
-                                            id="email"
-                                            name="email"
-                                            placeholder="your.email@example.com"
-                                            required
-                                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                                        />
-                                        <div class="invalid-feedback">
-                                            Please enter a valid email address.
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="mb-4 position-relative">
-                                    <label for="message" class="form-label">Message</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text bg-transparent border-0 position-absolute start-0 top-2 ps-3 text-muted">
-                                            <i class="fas fa-comment"></i>
-                                        </span>
-                                        <textarea
-                                            class="form-control ps-5"
-                                            id="message"
-                                            name="message"
-                                            rows="4"
-                                            placeholder="Write your message here..."
-                                            required
-                                            minlength="10"
-                                            maxlength="500"
-                                        ></textarea>
-                                        <div class="invalid-feedback">
-                                            Please enter a message (10-500 characters).
-                                        </div>
-                                    </div>
-                                    <small class="form-text text-muted position-absolute end-0 mt-1" id="message-count">
-                                        0 / 500
-                                    </small>
-                                </div>
-                                
-                                <button 
-                                    type="submit" 
-                                    class="btn btn-primary w-100 d-flex align-items-center justify-content-center"
-                                    id="submit-btn"
-                                >
-                                    <i class="fas fa-paper-plane me-2"></i> 
-                                    <span>Send Message</span>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+    <section id="contact" class="contact-section py-5">
+      <div class="container">
+        <div class="section-eyebrow">GET IN TOUCH</div>
+
+        <div class="contact-layout">
+          <div class="contact-copy">
+            <h2 class="contact-title">
+              Let's build something
+              <span class="gradient-text">useful.</span>
+            </h2>
+            <p class="contact-lead">
+              Have a project, opportunity or a technical problem worth discussing?
+              Send me a message and I'll get back to you.
+            </p>
+
+            <div class="contact-links">
+              <a href="https://github.com/MihailKanev01" target="_blank" rel="noopener noreferrer" class="contact-link">
+                <span class="contact-link-icon"><i class="fab fa-github" aria-hidden="true"></i></span>
+                <span>
+                  <small>GITHUB</small>
+                  <strong>MihailKanev01</strong>
+                </span>
+                <i class="fas fa-arrow-up-right-from-square contact-link-arrow" aria-hidden="true"></i>
+              </a>
+
+              <a href="https://www.linkedin.com/in/mihail-kanev/" target="_blank" rel="noopener noreferrer" class="contact-link">
+                <span class="contact-link-icon"><i class="fab fa-linkedin-in" aria-hidden="true"></i></span>
+                <span>
+                  <small>LINKEDIN</small>
+                  <strong>Mihail Kanev</strong>
+                </span>
+                <i class="fas fa-arrow-up-right-from-square contact-link-arrow" aria-hidden="true"></i>
+              </a>
             </div>
+
+            <div class="contact-note">
+              <span class="contact-note-dot"></span>
+              Currently focused on C#, .NET, backend and application development.
+            </div>
+          </div>
+
+          <div class="contact-form-card">
+            <div class="contact-form-header">
+              <div>
+                <span class="contact-form-kicker">DIRECT MESSAGE</span>
+                <h3>Send a message</h3>
+              </div>
+              <i class="fas fa-paper-plane" aria-hidden="true"></i>
+            </div>
+
+            <form id="contact-form" novalidate>
+              <div class="contact-field">
+                <label for="name">Name</label>
+                <div class="contact-input-wrap">
+                  <i class="fas fa-user" aria-hidden="true"></i>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    name="name"
+                    placeholder="Your name"
+                    required
+                    minlength="2"
+                    maxlength="50"
+                    autocomplete="name"
+                  />
+                </div>
+                <div class="invalid-feedback">Please enter a valid name.</div>
+              </div>
+
+              <div class="contact-field">
+                <label for="email">Email</label>
+                <div class="contact-input-wrap">
+                  <i class="fas fa-envelope" aria-hidden="true"></i>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    placeholder="you@example.com"
+                    required
+                    autocomplete="email"
+                  />
+                </div>
+                <div class="invalid-feedback">Please enter a valid email address.</div>
+              </div>
+
+              <div class="contact-field contact-message-field">
+                <label for="message">Message</label>
+                <div class="contact-input-wrap contact-textarea-wrap">
+                  <i class="fas fa-comment" aria-hidden="true"></i>
+                  <textarea
+                    class="form-control"
+                    id="message"
+                    name="message"
+                    rows="5"
+                    placeholder="Tell me what you're working on..."
+                    required
+                    minlength="10"
+                    maxlength="500"
+                  ></textarea>
+                </div>
+                <div class="invalid-feedback">Please enter a message between 10 and 500 characters.</div>
+                <small id="message-count">0 / 500</small>
+              </div>
+
+              <button type="submit" class="btn btn-primary contact-submit" id="submit-btn">
+                <span>Send Message</span>
+                <i class="fas fa-arrow-right" aria-hidden="true"></i>
+              </button>
+            </form>
+          </div>
         </div>
+      </div>
     </section>
 
     </main>
@@ -687,7 +710,7 @@
                         <div class="d-flex align-items-center justify-content-center justify-content-md-start">
                             <div>
                                 <h4 class="footer-logo mb-1">Mihail</h4>
-                                <p class="footer-tagline mb-0">Unity & C# Developer</p>
+                                <p class="footer-tagline mb-0">Software Developer</p>
                             </div>
                         </div>
                     </div>
