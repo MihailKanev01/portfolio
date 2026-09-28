@@ -233,10 +233,19 @@ form.addEventListener('submit', function(event) {
       Sending...
     `;
     
+    const senderName = nameInput.value.trim();
+    const senderEmail = emailInput.value.trim();
+    const senderMessage = messageInput.value.trim();
+
+    // Provide both common EmailJS variable naming conventions.
+    // This keeps the form compatible with templates using either
+    // name/email/message or from_name/reply_to/message.
     const templateParams = {
-      from_name: nameInput.value.trim(), 
-      reply_to: emailInput.value.trim(), 
-      message: messageInput.value.trim()  
+      name: senderName,
+      email: senderEmail,
+      from_name: senderName,
+      reply_to: senderEmail,
+      message: senderMessage
     };
     
     if (typeof emailjs === 'undefined') {
@@ -258,8 +267,8 @@ form.addEventListener('submit', function(event) {
     }
     
     emailjs.send(
-      'service_za0kkku',   
-      'template_drq3v2w', 
+      'service_za0kkku',
+      'template_drq3v2w',
       templateParams
     )
       .then(function(response) {
