@@ -1082,3 +1082,190 @@ background-color: var(--darker-bg);
   margin-top: 10px;
 }
 }
+
+/* =========================================================
+   DESIGN SYSTEM — Stage 1
+   ========================================================= */
+
+:root {
+  --color-primary: #0b0f19;
+  --color-primary-lighter: #111827;
+  --color-secondary: #1f2937;
+  --color-secondary-lighter: #374151;
+  --color-secondary-darker: #0f172a;
+
+  --color-accent: #3b82f6;
+  --color-accent-lighter: #60a5fa;
+  --color-accent-darker: #2563eb;
+
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+
+  --dark-bg: #0b0f19;
+  --darker-bg: #080c14;
+  --card-bg: #111827;
+  --input-bg: #0f172a;
+
+  --border-subtle: rgba(148, 163, 184, 0.16);
+  --border-strong: rgba(148, 163, 184, 0.26);
+
+  --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.14);
+  --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.20);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+
+  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+html[data-theme="light"] {
+  --color-primary: #f6f7fb;
+  --color-primary-lighter: #eef2f7;
+  --color-secondary: #e2e8f0;
+  --color-secondary-lighter: #cbd5e1;
+  --color-secondary-darker: #e5e7eb;
+
+  --color-accent: #2563eb;
+  --color-accent-lighter: #3b82f6;
+  --color-accent-darker: #1d4ed8;
+
+  --text-primary: #111827;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+
+  --dark-bg: #f6f7fb;
+  --darker-bg: #eef2f7;
+  --card-bg: #ffffff;
+  --input-bg: #f8fafc;
+
+  --border-subtle: rgba(15, 23, 42, 0.10);
+  --border-strong: rgba(15, 23, 42, 0.16);
+
+  --shadow-sm: 0 4px 16px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 12px 32px rgba(15, 23, 42, 0.10);
+}
+
+/* Typography */
+body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.65;
+  letter-spacing: -0.01em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.navbar-brand,
+.nav-link,
+.btn {
+  font-family: var(--font-sans);
+}
+
+code,
+pre,
+.tag,
+.hero-badge,
+.loader-text {
+  font-family: var(--font-mono);
+}
+
+/* Unified surfaces */
+.card,
+.project-card,
+.skill-category {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.card:hover,
+.project-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+/* More restrained controls */
+.btn {
+  border-radius: var(--radius-md);
+  letter-spacing: -0.01em;
+}
+
+.form-control {
+  border-radius: var(--radius-md);
+}
+
+.navbar .nav-link {
+  border-radius: var(--radius-sm);
+}
+
+.project-card {
+  border-radius: var(--radius-lg);
+}
+
+.tag {
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}
+
+.skill-category {
+  border-radius: var(--radius-lg);
+}
+
+/* Keep interactive motion focused instead of applying transitions globally */
+.btn,
+.card,
+.project-card,
+.skill-category,
+.project-link,
+.social-icon,
+.navbar-brand,
+.navbar .nav-link,
+.form-control {
+  transition:
+    transform 0.25s ease,
+    color 0.25s ease,
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    opacity 0.25s ease;
+}
+
+/* Better theme-aware form contrast */
+.form-control {
+  box-shadow: inset 0 0 0 1px transparent;
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14);
+}
+
+/* Light-theme neutral surfaces */
+html[data-theme="light"] .card,
+html[data-theme="light"] .project-card,
+html[data-theme="light"] .skill-category {
+  box-shadow: var(--shadow-sm);
+}
+
+html[data-theme="light"] .btn-outline-light {
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
