@@ -21,15 +21,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const savedTheme = localStorage.getItem('theme') || 'dark';
   document.documentElement.setAttribute('data-theme', savedTheme);
 
-  function updateThemeIcon(theme) {
-    const themeIcon = document.getElementById('theme-icon');
-    if (!themeIcon) return;
-    
-    themeIcon.classList.remove('fa-moon', 'fa-sun');
-    themeIcon.classList.add(theme === 'light' ? 'fa-sun' : 'fa-moon');
-  }
-
-  updateThemeIcon(savedTheme);
   
   console.log('Applied theme:', savedTheme);
   
@@ -47,7 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
         localStorage.setItem('theme', newTheme);
         document.documentElement.setAttribute('data-theme', newTheme);
-        updateThemeIcon(newTheme);
         
         console.log('Theme changed to:', newTheme);
         
