@@ -1647,3 +1647,229 @@ html[data-theme="light"] .hero-code-body {
     margin: 16px auto 0;
   }
 }
+
+
+/* =========================================================
+   STAGE 3 — ABOUT + WHAT I BUILD
+   ========================================================= */
+
+.about-section {
+  background: var(--dark-bg);
+}
+
+.section-eyebrow {
+  margin-bottom: 14px;
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  font-weight: 700;
+}
+
+.about-heading-row,
+.section-intro-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.75fr);
+  gap: 70px;
+  align-items: start;
+}
+
+.section-heading-left {
+  text-align: left;
+  margin-bottom: 22px;
+}
+
+.section-heading-left::after {
+  left: 0;
+  right: auto;
+  margin: 0;
+}
+
+.about-lead {
+  max-width: 680px;
+  margin: 0;
+  color: var(--text-primary);
+  font-size: clamp(1.3rem, 2.4vw, 1.85rem);
+  line-height: 1.45;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+.about-intro {
+  padding-top: 4px;
+}
+
+.about-intro p {
+  margin-bottom: 16px;
+  color: var(--text-secondary);
+  font-size: 0.98rem;
+  line-height: 1.85;
+}
+
+.about-facts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  margin-top: 52px;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--border-subtle);
+}
+
+.about-fact {
+  min-height: 112px;
+  padding: 22px;
+  background: var(--card-bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.about-fact-label {
+  margin-bottom: 8px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.63rem;
+  letter-spacing: 0.10em;
+  font-weight: 700;
+}
+
+.about-fact-value {
+  color: var(--text-primary);
+  font-size: 0.93rem;
+  font-weight: 600;
+}
+
+.what-i-build-section {
+  background:
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.025), transparent 22%),
+    var(--color-primary-lighter);
+}
+
+html[data-theme="light"] .what-i-build-section {
+  background: var(--color-primary-lighter);
+}
+
+.section-intro-copy {
+  margin: 4px 0 0;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+.build-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 38px;
+}
+
+.build-card {
+  position: relative;
+  min-height: 310px;
+  padding: 25px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--card-bg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.build-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-accent), transparent);
+  opacity: 0.8;
+}
+
+.build-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+}
+
+.build-number {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.67rem;
+  opacity: 0.65;
+}
+
+.build-icon {
+  width: 44px;
+  height: 44px;
+  margin-bottom: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  color: var(--color-accent);
+  background: rgba(59, 130, 246, 0.06);
+}
+
+.build-card h3 {
+  margin-bottom: 12px;
+  color: var(--text-primary);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.build-card p {
+  margin-bottom: 24px;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  line-height: 1.75;
+}
+
+.build-stack {
+  margin-top: auto;
+  color: var(--color-accent-lighter);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 991.98px) {
+  .about-heading-row,
+  .section-intro-row {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .about-facts {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .build-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 575.98px) {
+  .about-facts,
+  .build-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-fact {
+    min-height: 96px;
+  }
+
+  .build-card {
+    min-height: 280px;
+  }
+}
