@@ -395,82 +395,150 @@
       </section>
 
       <!-- Projects Section -->
-      <section id="projects" class="py-5">
+      <section id="projects" class="projects-section py-5">
         <div class="container">
-          <h2 class="section-heading gradient-text">Featured Projects</h2>
-          <p class="text-center text-muted mb-5">Selected projects that show how I approach software architecture, gameplay systems and practical applications.</p>
-          <div class="row" id="projects-grid">
-            <div class="col-md-6 col-lg-4 mb-4">
-              <div class="project-card h-100">
-                <div class="project-image project-image-game"><i class="fas fa-wand-magic-sparkles"></i></div>
-                <div class="project-info">
-                  <h3 class="h5 mb-3">NarutoGame</h3>
-                  <p class="mb-3">Unity game project focused on gameplay systems, player interaction and combat-oriented mechanics.</p>
-                  <div class="project-tags"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Game Dev</span></div>
-                  <a href="https://github.com/MihailKanev01/NarutoGame" target="_blank" rel="noopener noreferrer" class="project-link">View on GitHub <i class="fas fa-arrow-right"></i></a>
-                </div>
-              </div>
+          <div class="section-eyebrow">SELECTED WORK</div>
+          <div class="section-intro-row projects-heading-row">
+            <div>
+              <h2 class="section-heading section-heading-left mb-0">Projects that show how I build.</h2>
             </div>
+            <div class="projects-intro">
+              <p>Real applications and game projects, with the code available on GitHub.</p>
+            </div>
+          </div>
 
-            <div class="col-md-6 col-lg-4 mb-4">
-              <div class="project-card h-100">
-                <div class="project-image project-image-game"><i class="fas fa-bolt"></i></div>
-                <div class="project-info">
-                  <h3 class="h5 mb-3">The Flash UE</h3>
-                  <p class="mb-3">Game development project exploring character movement, abilities and interactive systems.</p>
-                  <div class="project-tags"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Gameplay</span></div>
-                  <a href="https://github.com/MihailKanev01/TheFlashUE" target="_blank" rel="noopener noreferrer" class="project-link">View on GitHub <i class="fas fa-arrow-right"></i></a>
-                </div>
-              </div>
-            </div>
+          <div class="project-filters" role="group" aria-label="Filter projects">
+            <button class="project-filter active" type="button" data-filter="all">All</button>
+            <button class="project-filter" type="button" data-filter="software">Software</button>
+            <button class="project-filter" type="button" data-filter="game">Game Development</button>
+          </div>
 
-            <div class="col-md-6 col-lg-4 mb-4">
-              <div class="project-card h-100">
-                <div class="project-image project-image-game"><i class="fas fa-running"></i></div>
-                <div class="project-info">
-                  <h3 class="h5 mb-3">Endless Runner</h3>
-                  <p class="mb-3">A complete Unity game project demonstrating core gameplay loops, input, obstacles and progression.</p>
-                  <div class="project-tags"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Game Dev</span></div>
-                  <a href="https://github.com/MihailKanev01/Endless-Runner" target="_blank" rel="noopener noreferrer" class="project-link">View on GitHub <i class="fas fa-arrow-right"></i></a>
+          <div class="projects-grid" id="projects-grid">
+            <article class="project-card project-featured" data-category="software">
+              <div class="project-visual project-visual-fuel">
+                <div class="project-visual-grid"></div>
+                <div class="fuel-ui">
+                  <div class="fuel-ui-top">
+                    <span class="fuel-ui-label">FUEL TRACKER</span>
+                    <span class="fuel-ui-live"><span></span> DATA PIPELINE</span>
+                  </div>
+                  <div class="fuel-ui-price">
+                    <span>Diesel</span>
+                    <strong>BGN / EUR</strong>
+                  </div>
+                  <div class="fuel-ui-bars">
+                    <i></i><i></i><i></i><i></i><i></i>
+                  </div>
+                  <div class="fuel-ui-footer">
+                    <span>PostgreSQL</span>
+                    <span>Prisma</span>
+                    <span>API</span>
+                  </div>
                 </div>
               </div>
-            </div>
+              <div class="project-content">
+                <div class="project-kicker">01 / SOFTWARE</div>
+                <h3>Fuel Tracker Bulgaria</h3>
+                <p>Production-oriented diesel price tracker with validated ingestion, immutable observations, PostgreSQL persistence and a cached API.</p>
+                <div class="project-tags">
+                  <span class="tag">Next.js</span>
+                  <span class="tag">PostgreSQL</span>
+                  <span class="tag">Prisma</span>
+                  <span class="tag">TypeScript</span>
+                </div>
+                <a href="https://github.com/MihailKanev01/fuel-tracker-bulgaria" target="_blank" rel="noopener noreferrer" class="project-link">View repository <i class="fas fa-arrow-up-right-from-square"></i></a>
+              </div>
+            </article>
 
-            <div class="col-md-6 col-lg-4 mb-4">
-              <div class="project-card h-100">
-                <div class="project-image project-image-software"><i class="fas fa-gas-pump"></i></div>
-                <div class="project-info">
-                  <h3 class="h5 mb-3">Fuel Tracker Bulgaria</h3>
-                  <p class="mb-3">Production-oriented fuel price tracker with PostgreSQL, Prisma, validation, ingestion and a cached API.</p>
-                  <div class="project-tags"><span class="tag">Next.js</span><span class="tag">PostgreSQL</span><span class="tag">Prisma</span></div>
-                  <a href="https://github.com/MihailKanev01/fuel-tracker-bulgaria" target="_blank" rel="noopener noreferrer" class="project-link">View on GitHub <i class="fas fa-arrow-right"></i></a>
-                </div>
+            <article class="project-card project-compact" data-category="game">
+              <div class="project-visual project-visual-naruto">
+                <div class="game-visual-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
+                <span class="visual-corner">UNITY</span>
               </div>
-            </div>
+              <div class="project-content">
+                <div class="project-kicker">02 / GAME</div>
+                <h3>NarutoGame</h3>
+                <p>Unity game project focused on gameplay systems, player interaction and combat-oriented mechanics.</p>
+                <div class="project-tags"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Gameplay</span></div>
+                <a href="https://github.com/MihailKanev01/NarutoGame" target="_blank" rel="noopener noreferrer" class="project-link">View repository <i class="fas fa-arrow-up-right-from-square"></i></a>
+              </div>
+            </article>
 
-            <div class="col-md-6 col-lg-4 mb-4">
-              <div class="project-card h-100">
-                <div class="project-image project-image-software"><i class="fas fa-traffic-light"></i></div>
-                <div class="project-info">
-                  <h3 class="h5 mb-3">Traffic Management</h3>
-                  <p class="mb-3">C# WinForms application demonstrating desktop UI development, application logic and structured data handling.</p>
-                  <div class="project-tags"><span class="tag">C#</span><span class="tag">WinForms</span><span class="tag">Desktop</span></div>
-                  <a href="https://github.com/MihailKanev01/tu-varna-csharp-winforms-traffic" target="_blank" rel="noopener noreferrer" class="project-link">View on GitHub <i class="fas fa-arrow-right"></i></a>
-                </div>
+            <article class="project-card project-compact" data-category="game">
+              <div class="project-visual project-visual-ben10">
+                <div class="game-visual-icon"><i class="fas fa-circle-nodes"></i></div>
+                <span class="visual-corner">UNITY</span>
               </div>
-            </div>
+              <div class="project-content">
+                <div class="project-kicker">03 / GAME</div>
+                <h3>Ben 10: Project</h3>
+                <p>3D action-adventure project with transformation systems, playable aliens, abilities, UI and adaptive camera logic.</p>
+                <div class="project-tags"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Systems</span></div>
+                <a href="https://github.com/MihailKanev01/Ben-10-Project" target="_blank" rel="noopener noreferrer" class="project-link">View repository <i class="fas fa-arrow-up-right-from-square"></i></a>
+              </div>
+            </article>
 
-            <div class="col-md-6 col-lg-4 mb-4">
-              <div class="project-card h-100">
-                <div class="project-image project-image-software"><i class="fas fa-database"></i></div>
-                <div class="project-info">
-                  <h3 class="h5 mb-3">SQL Grocery Store</h3>
-                  <p class="mb-3">Relational database project focused on schema design, SQL queries and application-oriented data modeling.</p>
-                  <div class="project-tags"><span class="tag">SQL</span><span class="tag">Database</span><span class="tag">PostgreSQL/MySQL</span></div>
-                  <a href="https://github.com/MihailKanev01/tu-varna-sql-grocery-store" target="_blank" rel="noopener noreferrer" class="project-link">View on GitHub <i class="fas fa-arrow-right"></i></a>
-                </div>
+            <article class="project-card project-compact" data-category="game">
+              <div class="project-visual project-visual-flash">
+                <div class="game-visual-icon"><i class="fas fa-bolt"></i></div>
+                <span class="visual-corner">UNREAL</span>
               </div>
-            </div>
+              <div class="project-content">
+                <div class="project-kicker">04 / GAME</div>
+                <h3>The Flash UE</h3>
+                <p>Unreal Engine project exploring character movement, abilities and interactive game systems.</p>
+                <div class="project-tags"><span class="tag">Unreal Engine</span><span class="tag">C++</span><span class="tag">Gameplay</span></div>
+                <a href="https://github.com/MihailKanev01/TheFlashUE" target="_blank" rel="noopener noreferrer" class="project-link">View repository <i class="fas fa-arrow-up-right-from-square"></i></a>
+              </div>
+            </article>
+
+            <article class="project-card project-compact" data-category="game">
+              <div class="project-visual project-visual-runner">
+                <div class="game-visual-icon"><i class="fas fa-person-running"></i></div>
+                <span class="visual-corner">UNITY</span>
+              </div>
+              <div class="project-content">
+                <div class="project-kicker">05 / GAME</div>
+                <h3>Endless Runner</h3>
+                <p>Unity project demonstrating a complete gameplay loop with movement, obstacles, collectibles and progression.</p>
+                <div class="project-tags"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Game Dev</span></div>
+                <a href="https://github.com/MihailKanev01/Endless-Runner" target="_blank" rel="noopener noreferrer" class="project-link">View repository <i class="fas fa-arrow-up-right-from-square"></i></a>
+              </div>
+            </article>
+
+            <article class="project-card project-compact" data-category="software">
+              <div class="project-visual project-visual-traffic">
+                <div class="traffic-visual"><span></span><span></span><span></span></div>
+                <span class="visual-corner">C#</span>
+              </div>
+              <div class="project-content">
+                <div class="project-kicker">06 / SOFTWARE</div>
+                <h3>Traffic Management</h3>
+                <p>C# WinForms application demonstrating desktop UI development, application logic and structured data handling.</p>
+                <div class="project-tags"><span class="tag">C#</span><span class="tag">WinForms</span><span class="tag">Desktop</span></div>
+                <a href="https://github.com/MihailKanev01/tu-varna-csharp-winforms-traffic" target="_blank" rel="noopener noreferrer" class="project-link">View repository <i class="fas fa-arrow-up-right-from-square"></i></a>
+              </div>
+            </article>
+
+            <article class="project-card project-compact" data-category="software">
+              <div class="project-visual project-visual-sql">
+                <div class="sql-visual"><span>SELECT</span><span>FROM</span><span>WHERE</span></div>
+                <span class="visual-corner">SQL</span>
+              </div>
+              <div class="project-content">
+                <div class="project-kicker">07 / SOFTWARE</div>
+                <h3>SQL Grocery Store</h3>
+                <p>Relational database project focused on schema design, queries and application-oriented data modeling.</p>
+                <div class="project-tags"><span class="tag">SQL</span><span class="tag">Database</span><span class="tag">Relational</span></div>
+                <a href="https://github.com/MihailKanev01/tu-varna-sql-grocery-store" target="_blank" rel="noopener noreferrer" class="project-link">View repository <i class="fas fa-arrow-up-right-from-square"></i></a>
+              </div>
+            </article>
+          </div>
+
+          <div class="projects-footer">
+            <a href="https://github.com/MihailKanev01?tab=repositories" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light">
+              Explore all repositories <i class="fas fa-arrow-right ms-2"></i>
+            </a>
           </div>
         </div>
       </section>
