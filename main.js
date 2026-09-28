@@ -167,8 +167,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function showValidationMessage(input, isValid, message) {
-      const feedbackDiv = input.parentElement.querySelector('.invalid-feedback') || 
-        input.parentElement.querySelector('.valid-feedback');
+      const feedbackDiv = input.closest('.contact-field')?.querySelector('.invalid-feedback') ||
+        input.closest('.contact-field')?.querySelector('.valid-feedback');
       
       if (feedbackDiv) {
         feedbackDiv.textContent = message;
