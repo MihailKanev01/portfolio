@@ -1,12 +1,12 @@
 # Mihail Kanev — Portfolio
 
-Personal portfolio website showcasing selected software-development and game-development work.
+A lightweight personal portfolio website showcasing selected software-development and game-development work.
 
 **Live website:** [mihailkanev01.github.io/portfolio](https://mihailkanev01.github.io/portfolio/)
 
 ## Purpose
 
-The portfolio gives recruiters and collaborators a single place to explore projects, technical interests and contact information. It links to the source repositories so that project details and implementation can be reviewed directly.
+The portfolio gives recruiters and collaborators a single place to explore selected projects, technical interests and contact information. Each featured project links to its source repository so the implementation can be reviewed directly.
 
 ## Featured Work
 
@@ -20,22 +20,39 @@ The portfolio gives recruiters and collaborators a single place to explore proje
 | [The Haunted Lighthouse](https://github.com/MihailKanev01/The-Haunted-Lighthouse) | Godot first-person horror prototype |
 | [Traffic Management](https://github.com/MihailKanev01/tu-varna-csharp-winforms-traffic) | C# Windows Forms desktop application |
 
-## Repository
+## Technology
 
-This repository contains the source code for the portfolio website. The live site is the best place to see the current presentation; individual project repositories contain their own technical details and source.
+- HTML
+- CSS
+- JavaScript
 
-## Local Development
+The site is a static frontend with no package-install step required for a basic local preview.
+
+## Local Preview
 
 1. Clone the repository:
    ```bash
    git clone https://github.com/MihailKanev01/portfolio.git
    cd portfolio
    ```
-2. Open the project with the tools required by its source files.
-3. Follow the project's existing scripts/configuration to install dependencies and run a local preview.
+2. Start a local static file server:
+   ```bash
+   python -m http.server 8000
+   ```
+3. Open [http://localhost:8000](http://localhost:8000) in a browser.
 
-> Exact build commands depend on the current frontend setup. Check the repository's package or build configuration before installing dependencies.
+You can also open `index.html` directly, although a local HTTP server more closely resembles a hosted site.
+
+## Repository Structure
+
+- `index.html` — primary page
+- `Style.css` — layout and visual styling
+- `main.js` — client-side behaviour
+- `privacy-policy.html` — privacy information
+- `terms-of-service.html` — terms of service
+- `robots.txt` — crawler instructions
+- `tests/` — project tests
 
 ## Project Status
 
-Maintained as a public developer portfolio. Project descriptions should reflect implemented work and clearly distinguish prototypes from production applications.
+Maintained as a public developer portfolio. Project descriptions should reflect implemented work and distinguish prototypes from production applications.
